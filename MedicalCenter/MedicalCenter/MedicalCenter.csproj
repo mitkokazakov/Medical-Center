@@ -23,4 +23,8 @@
     <ProjectReference Include="..\MedicalCenter.Data\MedicalCenter.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

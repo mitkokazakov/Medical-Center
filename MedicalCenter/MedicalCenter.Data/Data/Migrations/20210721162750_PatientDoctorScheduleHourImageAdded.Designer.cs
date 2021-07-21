@@ -4,14 +4,16 @@ using MedicalCenter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MedicalCenter.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210721162750_PatientDoctorScheduleHourImageAdded")]
+    partial class PatientDoctorScheduleHourImageAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,56 +94,6 @@ namespace MedicalCenter.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.BloodTest", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("BloodTests");
-                });
-
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.BloodTestsPatients", b =>
-                {
-                    b.Property<string>("BloodTestId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ParameterId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("BloodTestId", "PatientId", "ParameterId");
-
-                    b.HasIndex("ParameterId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("BloodTestsPatients");
                 });
 
             modelBuilder.Entity("MedicalCenter.Data.Data.Models.Doctor", b =>
@@ -240,29 +192,6 @@ namespace MedicalCenter.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.Parameter", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("MaxValue")
-                        .HasColumnType("float");
-
-                    b.Property<double>("MinValue")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Parameters");
                 });
 
             modelBuilder.Entity("MedicalCenter.Data.Data.Models.Patient", b =>
@@ -468,52 +397,6 @@ namespace MedicalCenter.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.BloodTest", b =>
-                {
-                    b.HasOne("MedicalCenter.Data.Data.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenter.Data.Data.Models.Patient", "Patient")
-                        .WithMany("BloodTests")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.BloodTestsPatients", b =>
-                {
-                    b.HasOne("MedicalCenter.Data.Data.Models.BloodTest", "BloodTest")
-                        .WithMany("BloodTestsPatients")
-                        .HasForeignKey("BloodTestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenter.Data.Data.Models.Parameter", "Paramater")
-                        .WithMany()
-                        .HasForeignKey("ParameterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenter.Data.Data.Models.Patient", "Patient")
-                        .WithMany("BloodTestsPatients")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BloodTest");
-
-                    b.Navigation("Paramater");
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("MedicalCenter.Data.Data.Models.Doctor", b =>
                 {
                     b.HasOne("MedicalCenter.Data.Data.Models.Image", "Image")
@@ -638,21 +521,9 @@ namespace MedicalCenter.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.BloodTest", b =>
-                {
-                    b.Navigation("BloodTestsPatients");
-                });
-
             modelBuilder.Entity("MedicalCenter.Data.Data.Models.Doctor", b =>
                 {
                     b.Navigation("Schedules");
-                });
-
-            modelBuilder.Entity("MedicalCenter.Data.Data.Models.Patient", b =>
-                {
-                    b.Navigation("BloodTests");
-
-                    b.Navigation("BloodTestsPatients");
                 });
 
             modelBuilder.Entity("MedicalCenter.Data.Data.Models.Schedule", b =>
