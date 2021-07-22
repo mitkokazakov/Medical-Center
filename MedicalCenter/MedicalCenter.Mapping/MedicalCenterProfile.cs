@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.ViewModels.Patients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace MedicalCenter.Mapping
     {
         public MedicalCenterProfile()
         {
-            
+            this.CreateMap<AddPatientFormModel, Patient>();
         }
     }
 }
