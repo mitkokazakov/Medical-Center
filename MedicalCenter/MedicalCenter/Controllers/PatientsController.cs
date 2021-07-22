@@ -1,5 +1,7 @@
-﻿using MedicalCenter.Services.Services;
+﻿using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.Services;
 using MedicalCenter.Services.ViewModels.Patients;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
@@ -10,10 +12,11 @@ namespace MedicalCenter.Controllers
     public class PatientsController : Controller
     {
         private readonly IPatientService patientService;
-
-        public PatientsController(IPatientService patientService)
+        private readonly UserManager<ApplicationUser> userManager;
+        public PatientsController(IPatientService patientService, UserManager<ApplicationUser> userManager)
         {
             this.patientService = patientService;
+            this.userManager = userManager;
         }
 
         public IActionResult Add()
@@ -31,6 +34,10 @@ namespace MedicalCenter.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await this.patientService.AddPatient(model,userId);
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            await this.userManager.AddToRoleAsync(user, "Patient");
 
             return this.RedirectToAction("Index", "Home");
         }
