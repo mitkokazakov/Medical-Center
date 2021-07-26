@@ -54,6 +54,8 @@ namespace MedicalCenter
             services.AddAutoMapper(typeof(MedicalCenterProfile).Assembly);
 
             services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IDoctorService, DoctorService>();
             services.AddControllersWithViews();
         }
 
