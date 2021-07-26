@@ -5,7 +5,11 @@
 <ul class="nav nav-pills flex-column">
     @if (this.User.IsInRole("Doctor"))
     {
-        <li class="nav-item"><a class="nav-link" id="about" asp-controller="Doctors" asp-action="Overview">About Me</a></li>
+        <li class="nav-item"><a class="nav-link" id="about" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a></li>
+    }
+    @if (this.User.IsInRole("Patient"))
+    {
+<li class="nav-item"><a class="nav-link" id="about" asp-controller="Patients" asp-action="ViewProfile">Patient's Profile</a></li>
     }
 
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>

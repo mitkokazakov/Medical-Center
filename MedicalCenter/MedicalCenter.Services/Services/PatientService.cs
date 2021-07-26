@@ -3,6 +3,7 @@ using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Patients;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MedicalCenter.Services.Services
@@ -27,6 +28,26 @@ namespace MedicalCenter.Services.Services
 
             await this.db.Patients.AddAsync(newPatient);
             await this.db.SaveChangesAsync();
+        }
+
+        public async Task ChangePatient(ChangePatientProfileViewModel model, string userId)
+        {
+            Patient patient = this.db.Patients.FirstOrDefault(u => u.UserId == userId);
+
+            patient.Country = model.Country;
+            patient.Town = model.Town;
+            patient.Address = model.Address;
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public ChangePatientProfileViewModel ChangePatientInfo(string userId)
+        {
+            Patient patient = this.db.Patients.FirstOrDefault(u => u.UserId == userId);
+
+            var patientInfo = this.mapper.Map<ChangePatientProfileViewModel>(patient);
+
+            return patientInfo;
         }
     }
 }

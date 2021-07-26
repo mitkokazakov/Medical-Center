@@ -13,7 +13,9 @@ namespace MedicalCenter.Mapping
     {
         public MedicalCenterProfile()
         {
+            //Patients
             this.CreateMap<AddPatientFormModel, Patient>();
+            this.CreateMap<Patient, ChangePatientProfileViewModel>();
         }
     }
 }

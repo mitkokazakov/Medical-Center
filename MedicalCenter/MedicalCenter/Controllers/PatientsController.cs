@@ -41,5 +41,24 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
+
+        public IActionResult ViewProfile()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var patientInfo = this.patientService.ChangePatientInfo(userId);
+
+            return this.View(patientInfo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeProfile(ChangePatientProfileViewModel model)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await this.patientService.ChangePatient(model,userId);
+
+            return this.RedirectToAction("Index", "Home");
+        }
     }
 }
