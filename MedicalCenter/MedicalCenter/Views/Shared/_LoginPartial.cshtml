@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<MedicalCenter.Data.Data.Models.ApplicationUser> SignInManager
 @inject UserManager<MedicalCenter.Data.Data.Models.ApplicationUser> UserManager
-@inject MedicalCenter.Services.Services.DoctorService DoctorService
+@inject MedicalCenter.Services.Services.IDoctorService DoctorService
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
