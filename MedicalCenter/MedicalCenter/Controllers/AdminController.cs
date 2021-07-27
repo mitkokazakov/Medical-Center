@@ -48,5 +48,19 @@ namespace MedicalCenter.Controllers
 
             return this.View(allImagesToApprove);
         }
+
+        public async Task<IActionResult> Approve(string id)
+        {
+            await this.adminService.ApproveImage(id);
+
+            return this.RedirectToAction("AllImages");
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.adminService.DeleteImage(id);
+
+            return this.RedirectToAction("AllImages");
+        }
     }
 }

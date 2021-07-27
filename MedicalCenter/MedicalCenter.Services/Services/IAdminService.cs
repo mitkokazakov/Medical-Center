@@ -10,5 +10,9 @@ namespace MedicalCenter.Services.Services
         Task CreateDoctor(CreateDoctorFormModel model);
 
         ICollection<AllImagesToApproveViewModel> GetAllImagesToApprove();
+
+        Task ApproveImage(string imageId);
+
+        Task DeleteImage(string imageId);
     }
 }

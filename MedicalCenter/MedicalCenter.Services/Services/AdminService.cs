@@ -52,5 +52,27 @@ namespace MedicalCenter.Services.Services
 
             return images;
         }
+
+        public async Task ApproveImage(string imageId)
+        {
+            var image = this.db.Images.FirstOrDefault(i => i.Id == imageId);
+
+            image.IsApproved = true;
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task DeleteImage(string imageId)
+        {
+            var image = this.db.Images.FirstOrDefault(i => i.Id == imageId);
+
+            var doctorWithImage = this.db.Doctors.FirstOrDefault(d => d.UserId == image.UserId);
+
+            doctorWithImage.ImageId = null;
+
+            this.db.Images.Remove(image);
+
+            await this.db.SaveChangesAsync();
+        }
     }
 }
