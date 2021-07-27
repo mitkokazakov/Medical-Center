@@ -30,7 +30,7 @@ namespace MedicalCenter.Data.Data.Models
 
         public bool IsDeleted { get; set; }
 
-        [Required]
+      
         public string ImageId { get; set; }
 
         public virtual Image Image { get; set; }
