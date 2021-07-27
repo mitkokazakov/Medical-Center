@@ -10,9 +10,9 @@ namespace MedicalCenter.Services
     {
         //Doctors
         public const int DoctorPasswordMinLen = 5;
-        public const int DoctorFirstNameMaxLen = 5;
+        public const int DoctorFirstNameMaxLen = 20;
         public const int DoctorFirstNameMinLen = 5;
-        public const int DoctorLastNameMaxLen = 5;
+        public const int DoctorLastNameMaxLen = 20;
         public const int DoctorLastNameMinLen = 5;
         public const int DoctorSpecialtyMinLen = 3;
         public const int DoctorSpecialtyMaxLen = 40;

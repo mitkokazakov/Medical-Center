@@ -1,7 +1,9 @@
-﻿<h1 class="text-center">All images to approve</h1>
+﻿@model ICollection<MedicalCenter.Services.ViewModels.Admin.AllImagesToApproveViewModel>
+
+<h1 class="text-center">All images to approve</h1>
 
 <div class="d-flex">
-    <partial name="_NavAdminPartial" />
+    <partial name="_SideBarNavigation" />
 
     <table class="table table-success table-hover table-striped">
 
@@ -18,7 +20,10 @@
                 <td><img width="150px" height="150px" src="~/images/@img.Path" /></td>
                 <td>@img.CreatedOn</td>
                 <td>@img.DoctorName</td>
-                <td><a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@img.Id">Approve</a></td>
+                <td>
+                    <a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@img.Id">Approve</a>
+                    <a class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@img.Id">Delete</a>
+                </td>
             </tr>
         }
     </table>

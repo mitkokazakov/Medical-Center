@@ -1,4 +1,7 @@
-﻿using MedicalCenter.Data.Data.Models;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MedicalCenter.Data;
+using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Admin;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -12,10 +15,13 @@ namespace MedicalCenter.Services.Services
     public class AdminService : IAdminService
     {
         private readonly UserManager<ApplicationUser> userManager;
-
-        public AdminService(UserManager<ApplicationUser> userManager)
+        private readonly ApplicationDbContext db;
+        private readonly IMapper mapper;
+        public AdminService(UserManager<ApplicationUser> userManager, ApplicationDbContext db, IMapper mapper)
         {
             this.userManager = userManager;
+            this.db = db;
+            this.mapper = mapper;
         }
 
         public async Task CreateDoctor(CreateDoctorFormModel model)
@@ -38,6 +44,13 @@ namespace MedicalCenter.Services.Services
                                         "Doctor").Wait();
                 }
             }
+        }
+
+        public ICollection<AllImagesToApproveViewModel> GetAllImagesToApprove()
+        {
+            var images = this.db.Images.Where(i => i.IsApproved == false).ProjectTo<AllImagesToApproveViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return images;
         }
     }
 }

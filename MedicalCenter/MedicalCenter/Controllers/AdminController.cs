@@ -41,5 +41,12 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AllImages()
+        {
+            var allImagesToApprove = this.adminService.GetAllImagesToApprove();
+
+            return this.View(allImagesToApprove);
+        }
     }
 }
