@@ -50,6 +50,15 @@ namespace MedicalCenter.Services.Services
             this.SavePicture(model, image.Id);
         }
 
+        public PreviewDoctorProfileViewModel GetDoctor(string userId)
+        {
+            var doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == userId);
+
+            var doctorsInfo = this.mapper.Map<PreviewDoctorProfileViewModel>(doctor);
+
+            return doctorsInfo;
+        }
+
         public bool IsDoctorProfileCompleted(string userId)
         {
             return this.db.Doctors.Any(d => d.UserId == userId);

@@ -38,5 +38,36 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult ViewProfile()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var doctor = this.doctorService.GetDoctor(userId);
+
+            return this.View(doctor);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult ChangeProfile(string id)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var doctor = this.doctorService.GetDoctor(userId);
+
+            return this.View(doctor);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public IActionResult ChangeProfile(string id, ChangeDoctorInfoFormModel model)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var doctor = this.doctorService.GetDoctor(userId);
+
+            return this.View(doctor);
+        }
     }
 }

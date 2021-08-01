@@ -1,0 +1,21 @@
+﻿@model MedicalCenter.Services.ViewModels.Doctors.PreviewDoctorProfileViewModel
+
+<div class="col">
+    <h1>This is my profile</h1>
+
+    @if (String.IsNullOrEmpty(this.Model.ImagePath))
+    {
+        <img width="150px" height="150px" src="~/images/unknowndoctor.jpg" />
+    }
+    else
+    {
+        <img width="150px" height="150px" src="~/images/@this.Model.ImagePath" />
+    }
+
+
+    <div class="text-center">
+        @this.Model.Biography
+    </div>
+
+    <a class="btn btn-warning" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id">Change</a>
+</div>

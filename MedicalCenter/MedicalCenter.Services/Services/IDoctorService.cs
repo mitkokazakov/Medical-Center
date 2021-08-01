@@ -12,5 +12,7 @@ namespace MedicalCenter.Services.Services
         bool IsDoctorProfileCompleted(string userId);
 
         Task AddDoctor(AddDoctorFormModel model, string userId);
+
+        PreviewDoctorProfileViewModel GetDoctor(string userId);
     }
 }
