@@ -61,13 +61,18 @@ namespace MedicalCenter.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Doctor")]
-        public IActionResult ChangeProfile(string id, ChangeDoctorInfoFormModel model)
+        public async Task<IActionResult> ChangeProfile(string id, ChangeDoctorInfoFormModel model)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var doctor = this.doctorService.GetDoctor(userId);
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
 
-            return this.View(doctor);
+            await this.doctorService.ChangeDoctorInfo(id,model);
+
+            return this.RedirectToAction("ViewProfile");
         }
     }
 }

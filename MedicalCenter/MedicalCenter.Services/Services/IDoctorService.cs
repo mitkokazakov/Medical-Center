@@ -14,5 +14,7 @@ namespace MedicalCenter.Services.Services
         Task AddDoctor(AddDoctorFormModel model, string userId);
 
         PreviewDoctorProfileViewModel GetDoctor(string userId);
+
+        Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model);
     }
 }

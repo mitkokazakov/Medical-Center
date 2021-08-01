@@ -50,6 +50,32 @@ namespace MedicalCenter.Services.Services
             this.SavePicture(model, image.Id);
         }
 
+        public async Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model)
+        {
+            var doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == userId);
+
+            string extension = Path.GetExtension(model.Image.FileName);
+
+            Image image = new Image()
+            {
+                CreatedOn = DateTime.UtcNow,
+                UserId = userId,
+                Extension = extension
+            };
+
+            await this.db.Images.AddAsync(image);
+            await this.db.SaveChangesAsync();
+
+            doctor.ImageId = image.Id;
+            doctor.Biography = model.Biography;
+
+            await this.db.SaveChangesAsync();
+
+            this.ChangePicture(model, image.Id);
+
+
+        }
+
         public PreviewDoctorProfileViewModel GetDoctor(string userId)
         {
             var doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == userId);
@@ -65,6 +91,23 @@ namespace MedicalCenter.Services.Services
         }
 
         private void SavePicture(AddDoctorFormModel model, string pictureName)
+        {
+            string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
+
+            string extension = Path.GetExtension(model.Image.FileName);
+
+            string pictureFileName = pictureName + extension;
+
+            string filePath = Path.Combine(uploadsFolder, pictureFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                model.Image.CopyTo(fileStream);
+            }
+
+        }
+
+        private void ChangePicture(ChangeDoctorInfoFormModel model, string pictureName)
         {
             string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
 

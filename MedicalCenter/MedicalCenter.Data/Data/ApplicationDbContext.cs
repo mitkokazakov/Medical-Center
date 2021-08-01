@@ -23,12 +23,19 @@ namespace MedicalCenter.Data
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<BloodTestsPatients>()
                 .HasKey(x => new { x.BloodTestId, x.PatientId, x.ParameterId });
 
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }
