@@ -78,12 +78,18 @@ namespace MedicalCenter.Controllers
         [Authorize(Roles = "Doctor")]
         public IActionResult Manage()
         {
-            return this.View();
+            var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var schedules = this.doctorService.ListAllFreeHours(doctorId).ToList();
+
+            return this.View(schedules);
         }
 
         [Authorize(Roles = "Doctor")]
         public IActionResult MakeSchedule()
         {
+            var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             return this.View();
         }
 

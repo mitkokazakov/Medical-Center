@@ -162,7 +162,7 @@ namespace MedicalCenter.Services.Services
             }
         }
 
-        public IEnumerable<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId)
+        public ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId)
         {
             var schedules = this.db.Schedules.Where(d => d.UserId == doctorId).ProjectTo<ListAllSchedulesViewModel>(this.mapper.ConfigurationProvider).ToList();
 

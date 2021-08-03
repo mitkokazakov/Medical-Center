@@ -19,6 +19,6 @@ namespace MedicalCenter.Services.Services
 
         Task AddFreeHour(string doctorId, InputScheduleFormModel model);
 
-        IEnumerable<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
+        ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
     }
 }

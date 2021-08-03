@@ -1,5 +1,37 @@
-﻿<div class="d-flex">
+﻿@model ICollection<MedicalCenter.Services.ViewModels.Doctors.ListAllSchedulesViewModel>
+
+<div class="d-flex">
 
     <partial name="_SideNavBarDoctors" />
+
+    <div class="d-flex">
+
+        @foreach (var day in this.Model)
+        {
+            <div>
+                <table class="table table-hover table-striped table-success col-md-4 col-sm-12">
+                    <tr>
+                        <th>@day.NameOfDay</th>
+                    </tr>
+
+                    @foreach (var h in day.Hours)
+                    {
+                        <tr>
+                            @if (h.IsFree)
+                            {
+                                <td><a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-success">@h.Hour</a></td>
+                            }
+                            else
+                            {
+                                <td><a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-secondary disabled">@h.Hour</a></td>
+                            }
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+
+    </div>
 
 </div>
