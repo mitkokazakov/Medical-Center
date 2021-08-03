@@ -13,7 +13,6 @@ namespace MedicalCenter.Data.Data.Models
         public DateTime FreeHour { get; set; }
 
 
-        [Required]
         [MaxLength(HourReasonMaxLen)]
         public string Reason { get; set; }
 

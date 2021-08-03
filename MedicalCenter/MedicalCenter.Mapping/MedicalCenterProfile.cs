@@ -29,6 +29,15 @@ namespace MedicalCenter.Mapping
             this.CreateMap<Doctor, PreviewDoctorProfileViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(x => x.UserId))
                 .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension));
+
+            //Schedule
+            this.CreateMap<Hour, ListAllHoursViewModel>()
+                .ForMember(x => x.Hour, y => y.MapFrom(x => x.FreeHour.ToString("HH:mm")))
+                .ForMember(x => x.HourId, y => y.MapFrom(x => x.Id))
+                .ForMember(x => x.IsFree, y => y.MapFrom(x => x.IsFree));
+
+            this.CreateMap<Schedule, ListAllSchedulesViewModel>()
+                .ForMember(x => x.NameOfDay, y => y.MapFrom(x => x.Date.ToString("dddd, dd MMMM yyyy")));
         }
     }
 }

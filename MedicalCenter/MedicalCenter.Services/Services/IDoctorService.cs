@@ -16,5 +16,9 @@ namespace MedicalCenter.Services.Services
         PreviewDoctorProfileViewModel GetDoctor(string userId);
 
         Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model);
+
+        Task AddFreeHour(string doctorId, InputScheduleFormModel model);
+
+        IEnumerable<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
     }
 }

@@ -1,0 +1,18 @@
+﻿@model MedicalCenter.Services.ViewModels.Doctors.InputScheduleFormModel
+
+<div class="d-flex">
+
+    <partial name="_SideNavBarDoctors" />
+
+
+    <form class="form-check" asp-controller="Doctors" asp-action="MakeSchedule" method="post">
+
+        <div class="form-group">
+            <label asp-for="Date"></label>
+            <input type="datetime-local" asp-for="Date" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Add Hour</button>
+    </form>
+
+</div>

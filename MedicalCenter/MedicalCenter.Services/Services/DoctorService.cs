@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Doctors;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -122,6 +125,48 @@ namespace MedicalCenter.Services.Services
                 model.Image.CopyTo(fileStream);
             }
 
+        }
+
+        public async Task AddFreeHour(string doctorId, InputScheduleFormModel model)
+        {
+            var dayFormat = DateTime.ParseExact(model.Date.ToString("MM/dd/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+            var hourFormat = DateTime.ParseExact(model.Date.ToString("HH:mm"), "HH:mm", CultureInfo.InvariantCulture);
+
+            var schedule = this.db.Schedules.FirstOrDefault(d => d.UserId == doctorId && d.Date == dayFormat);
+
+            if (schedule == null)
+            {
+                schedule = new Schedule()
+                {
+                    Date = dayFormat,
+                    UserId = doctorId
+                };
+
+                await this.db.Schedules.AddAsync(schedule);
+                await this.db.SaveChangesAsync();
+            }
+
+            var hour = this.db.Hours.FirstOrDefault(h => h.ScheduleId == schedule.Id && h.FreeHour == hourFormat);
+
+            if (hour == null)
+            {
+                hour = new Hour()
+                {
+                    FreeHour = hourFormat,
+                    ScheduleId = schedule.Id
+                };
+
+                await this.db.Hours.AddAsync(hour);
+                await this.db.SaveChangesAsync();
+            }
+        }
+
+        public IEnumerable<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId)
+        {
+            var schedules = this.db.Schedules.Where(d => d.UserId == doctorId).ProjectTo<ListAllSchedulesViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return schedules;
         }
     }
 }

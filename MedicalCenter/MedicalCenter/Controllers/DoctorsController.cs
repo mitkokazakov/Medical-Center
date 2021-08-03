@@ -74,5 +74,28 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("ViewProfile");
         }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult Manage()
+        {
+            return this.View();
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult MakeSchedule()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public async Task<IActionResult> MakeSchedule(InputScheduleFormModel model)
+        {
+            var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await this.doctorService.AddFreeHour(doctorId, model);
+
+            return this.RedirectToAction("Manage");
+        }
     }
 }
