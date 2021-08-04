@@ -34,6 +34,11 @@ namespace MedicalCenter.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
+
             await this.doctorService.AddDoctor(model, userId);
 
             return this.RedirectToAction("Index", "Home");
@@ -88,8 +93,7 @@ namespace MedicalCenter.Controllers
         [Authorize(Roles = "Doctor")]
         public IActionResult MakeSchedule()
         {
-            var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            
             return this.View();
         }
 
@@ -98,6 +102,11 @@ namespace MedicalCenter.Controllers
         public async Task<IActionResult> MakeSchedule(InputScheduleFormModel model)
         {
             var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
 
             await this.doctorService.AddFreeHour(doctorId, model);
 

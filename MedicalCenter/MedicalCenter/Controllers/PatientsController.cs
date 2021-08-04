@@ -56,6 +56,11 @@ namespace MedicalCenter.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
+
             await this.patientService.ChangePatient(model,userId);
 
             return this.RedirectToAction("Index", "Home");
