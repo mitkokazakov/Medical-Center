@@ -1,0 +1,28 @@
+﻿@model MedicalCenter.Services.ViewModels.Patients.FindPatientEGNFormModel
+
+<div class="d-flex">
+    <partial name="_SideNavBarDoctors" />
+
+        <div class="row mb-3">
+            <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+                <h2 class="heading-margin text-center">Find Patient By EGN</h2>
+
+                <form method="post" asp-controller="Doctors" asp-action="PatientProfile">
+
+                    <div class="form-group">
+                        <label asp-for="EGN"></label>
+                        <input asp-for="EGN" name ="EGN" class="form-control" placeholder="9211067524 e.g.">
+                        <span asp-validation-for="EGN" class="small text-danger"></span>
+                    </div>
+
+                    <input class="btn btn-success mt-3 text-center" type="submit" value="Find" />
+                </form>
+            </div>
+        </div>
+
+        
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MedicalCenter.Services.Services;
 using MedicalCenter.Services.ViewModels.Doctors;
+using MedicalCenter.Services.ViewModels.Patients;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,11 +16,13 @@ namespace MedicalCenter.Controllers
     public class DoctorsController : Controller
     {
         private readonly IDoctorService doctorService;
+        private readonly IPatientService patientService;
 
 
-        public DoctorsController(IDoctorService doctorService)
+        public DoctorsController(IDoctorService doctorService, IPatientService patientService)
         {
             this.doctorService = doctorService;
+            this.patientService = patientService;
         }
 
         [Authorize(Roles = "Doctor")]
@@ -112,5 +115,36 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Manage");
         }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult FindPatientByEGN()
+        {
+            return this.View();
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult FindPatientByName()
+        {
+            return this.View();
+        }
+
+       
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public IActionResult PatientProfile(FindPatientEGNFormModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
+
+            var patient = this.patientService.FindPatientByEGN(model.EGN);
+
+            return this.View(patient);
+        }
+
+
+
+
     }
 }

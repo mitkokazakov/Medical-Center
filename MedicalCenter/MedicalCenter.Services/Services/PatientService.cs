@@ -49,5 +49,33 @@ namespace MedicalCenter.Services.Services
 
             return patientInfo;
         }
+
+        public PatientProfileViewModel FindPatientByEGN(string egn)
+        {
+            var patient = this.db.Patients.FirstOrDefault(p => p.EGN == egn);
+
+            PatientProfileViewModel patientProfile = null;
+
+            if (patient != null)
+            {
+                patientProfile = this.mapper.Map<PatientProfileViewModel>(patient);
+            }
+
+            return patientProfile;
+        }
+
+        //public PatientProfileViewModel FindPatientByName(string name)
+        //{
+        //    var patient = this.db.Patients.FirstOrDefault(p => p.User.FirstName + " " + p.User.LastName == name);
+
+        //    PatientProfileViewModel patientProfile = null;
+
+        //    if (patient != null)
+        //    {
+        //        patientProfile = this.mapper.Map<PatientProfileViewModel>(patient);
+        //    }
+
+        //    return patientProfile;
+        //}
     }
 }

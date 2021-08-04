@@ -18,6 +18,10 @@ namespace MedicalCenter.Mapping
             //Patients
             this.CreateMap<AddPatientFormModel, Patient>();
             this.CreateMap<Patient, ChangePatientProfileViewModel>();
+            this.CreateMap<Patient, PatientProfileViewModel>()
+                .ForMember(x => x.Age, y => y.MapFrom(x => DateTime.Now.Year - x.DateOfBirth.Year))
+                .ForMember(x => x.FullName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName))
+                .ForMember(x => x.DateOfBirth, y => y.MapFrom(x => x.DateOfBirth.ToString()));
 
             //Images
             this.CreateMap<Image, AllImagesToApproveViewModel>()

@@ -11,5 +11,9 @@ namespace MedicalCenter.Services.Services
         ChangePatientProfileViewModel ChangePatientInfo(string userId);
 
         Task ChangePatient(ChangePatientProfileViewModel model, string userId);
+
+        PatientProfileViewModel FindPatientByEGN(string egn);
+
+        //PatientProfileViewModel FindPatientByName(string name);
     }
 }

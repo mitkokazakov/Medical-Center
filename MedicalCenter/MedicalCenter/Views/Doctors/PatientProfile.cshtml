@@ -1,0 +1,20 @@
+﻿@model MedicalCenter.Services.ViewModels.Patients.PatientProfileViewModel
+
+    <div class="d-flex">
+
+        <partial name="_SideNavBarDoctors" />
+
+        <div>
+            <h3>@this.Model.FullName - @this.Model.Age years old</h3>
+
+            <p>@this.Model.Country</p>
+
+            <p>@this.Model.Town</p>
+
+            <p>@this.Model.Address</p>
+
+            <p>@this.Model.EGN</p>
+
+            <p>@this.Model.DateOfBirth</p>
+        </div>
+    </div>

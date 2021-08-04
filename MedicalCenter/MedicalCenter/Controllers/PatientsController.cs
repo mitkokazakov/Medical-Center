@@ -1,6 +1,7 @@
 ﻿using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.Services;
 using MedicalCenter.Services.ViewModels.Patients;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -65,5 +66,7 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
+
+        
     }
 }
