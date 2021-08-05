@@ -1,6 +1,6 @@
 ﻿@model MedicalCenter.Services.ViewModels.Doctors.PreviewDoctorProfileViewModel
 
-<div class="row d-inline">
+@*<div class="row d-inline">
     <h1 class="col col-md-4 align-self-center offset-md-4">This is my profile</h1>
 
     @if (String.IsNullOrEmpty(this.Model.ImagePath))
@@ -18,6 +18,27 @@
     </div>
 
     <a class="btn btn-warning col col-md-4 align-self-center offset-md-4" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id">Change</a>
+</div>*@
+
+
+<div class="container col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <h2>This is my Profile</h2>
+    <div class="card" style="width:400px">
+        @if (String.IsNullOrEmpty(this.Model.ImagePath))
+        {
+            <img class="card-img-top" src="/images/unknowndoctor.jpg" alt="Card image" style="width:100%">
+        }
+        else
+        {
+            <img class="card-img-top" src="~/images/@this.Model.ImagePath" alt="Card image" style="width:100%;height:400px">
+        }
+        <div class="card-body">
+            <p class="card-text">@this.Model.Biography</p>
+            <a asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id" class="btn btn-warning">Change Profile</a>
+            <a href="/Identity/Account/Manage" class="btn btn-warning">Back To Account</a>
+        </div>
+    </div>
+    
 </div>
 
 

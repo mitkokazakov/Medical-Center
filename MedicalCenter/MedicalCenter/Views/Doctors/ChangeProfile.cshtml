@@ -8,7 +8,7 @@
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
 
         <form method="post" class="mx-auto half-width" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id" enctype="multipart/form-data">
-            
+
             <div class="form-group">
                 <label asp-for="Biography"></label>
                 <textarea asp-for="Biography" class="form-control" rows="15"></textarea>
@@ -23,7 +23,9 @@
 
 
             <input class="btn btn-warning mt-3 text-center" type="submit" value="Change" />
+
         </form>
+
     </div>
 </div>
 
