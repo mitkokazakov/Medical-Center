@@ -108,8 +108,8 @@ namespace MedicalCenter.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                this.ModelState.AddModelError(String.Empty,"Invalid Data");
-                return this.RedirectToAction("Error","Home");
+                
+                return this.View();
             }
 
             await this.doctorService.AddFreeHour(doctorId, model);
