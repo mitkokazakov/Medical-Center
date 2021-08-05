@@ -11,6 +11,7 @@ namespace MedicalCenter.Services.ViewModels.Doctors
         [MinLength(DoctorBiographyMinLen, ErrorMessage = "{0} must at least {1} characters long.")]
         public string Biography { get; set; }
 
+        [Required]
         public IFormFile Image { get; set; }
     }
 }

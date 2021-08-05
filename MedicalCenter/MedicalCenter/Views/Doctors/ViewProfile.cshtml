@@ -1,21 +1,23 @@
 ﻿@model MedicalCenter.Services.ViewModels.Doctors.PreviewDoctorProfileViewModel
 
-<div class="col">
-    <h1>This is my profile</h1>
+<div class="row d-inline">
+    <h1 class="col col-md-4 align-self-center offset-md-4">This is my profile</h1>
 
     @if (String.IsNullOrEmpty(this.Model.ImagePath))
     {
-        <img width="150px" height="150px" src="~/images/unknowndoctor.jpg" />
+        <img class="col col-md-4 align-self-center offset-md-4" width="250px" height="250px" src="~/images/unknowndoctor.jpg" />
     }
     else
     {
-        <img width="150px" height="150px" src="~/images/@this.Model.ImagePath" />
+        <img class="col col-md-4 align-self-center offset-md-4" width="250px" height="250px" src="~/images/@this.Model.ImagePath" />
     }
 
 
-    <div class="text-center">
+    <div class="text-center col col-md-4 align-self-center offset-md-4">
         @this.Model.Biography
     </div>
 
-    <a class="btn btn-warning" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id">Change</a>
+    <a class="btn btn-warning col col-md-4 align-self-center offset-md-4" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id">Change</a>
 </div>
+
+
