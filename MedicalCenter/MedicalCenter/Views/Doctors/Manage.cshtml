@@ -1,37 +1,34 @@
 ﻿@model ICollection<MedicalCenter.Services.ViewModels.Doctors.ListAllSchedulesViewModel>
+    
+    <div class="row">
 
-<div class="row d-flex">
+        <partial name="_SideNavBarDoctors" />
 
-    <partial name="_SideNavBarDoctors" />
-
-    <div class="d-flex">
-
-        @foreach (var day in this.Model)
-        {
-            <div>
-                <table class="table table-hover table-striped table-success col-md-4 col-sm-12">
-                    <tr>
-                        <th>@day.NameOfDay</th>
-                    </tr>
+        <div class="col-md-10">
+            @foreach (var day in this.Model)
+            {
+            <div class="col-md-2">
+                <div class="d-flex flex-column">
+                    <h6>@day.NameOfDay</h6>
 
                     @foreach (var h in day.Hours)
                     {
-                        <tr>
-                            @if (h.IsFree)
-                            {
-                                <td><a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-success">@h.Hour</a></td>
-                            }
-                            else
-                            {
-                                <td><a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-secondary disabled">@h.Hour</a></td>
-                            }
+                        @if (h.IsFree)
+                        {
+                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-success">@h.Hour</a>
+                            <br />
+                        }
+                        else
+                        {
+                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-secondary disabled">@h.Hour</a>
+                            <br />
+                        }
 
-                        </tr>
                     }
-                </table>
+                </div>
             </div>
-        }
+                
+            }
+        </div>
 
     </div>
-
-</div>
