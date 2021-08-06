@@ -1,10 +1,10 @@
 ﻿@model ICollection<MedicalCenter.Services.ViewModels.Doctors.ListAllSchedulesViewModel>
     
-    <div class="row">
+    <div class="d-flex">
 
         <partial name="_SideNavBarDoctors" />
 
-        <div class="col-md-10">
+        <div class="row">
             @foreach (var day in this.Model)
             {
             <div class="col-md-2">
@@ -29,6 +29,10 @@
             </div>
                 
             }
+        </div>
+
+        <div>
+
         </div>
 
     </div>

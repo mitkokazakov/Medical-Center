@@ -1,20 +1,44 @@
 ﻿@model MedicalCenter.Services.ViewModels.Patients.PatientProfileViewModel
 
-    <div class="d-flex">
+<div class="d-flex justify-content-between">
 
-        <partial name="_SideNavBarDoctors" />
+    <partial name="_SideNavBarDoctors" />
 
-        <div>
-            <h3>@this.Model.FullName - @this.Model.Age years old</h3>
+    @*<div class="offset-auto">
+        <h3>@this.Model.FullName - @this.Model.Age years old</h3>
 
-            <p>@this.Model.Country</p>
+        <p>@this.Model.Country</p>
 
-            <p>@this.Model.Town</p>
+        <p>@this.Model.Town</p>
 
-            <p>@this.Model.Address</p>
+        <p>@this.Model.Address</p>
 
-            <p>@this.Model.EGN</p>
+        <p>@this.Model.EGN</p>
 
-            <p>@this.Model.DateOfBirth</p>
+        <p>@this.Model.DateOfBirth</p>
+    </div>*@
+
+
+    <div class="card text-center bg-info text-white">
+        <div class="card-header">
+            Patient's EGN - @this.Model.EGN
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@this.Model.FullName</h5>
+            <p class="card-text">@this.Model.Country</p>
+            <p class="card-text">@this.Model.Town, @this.Model.Address</p>
+            <a href="#" class="btn btn-light">View Tests</a>
+            <a href="#" class="btn btn-light">Make Tests</a>
+            <a href="#" class="btn btn-light">Go somewhere</a>
+            <a href="#" class="btn btn-light">Go somewhere</a>
+            <a href="#" class="btn btn-light">Go somewhere</a>
+        </div>
+        <div class="card-footer text-white">
+            Age - @this.Model.Age
         </div>
     </div>
+
+    <div>
+
+    </div>
+</div>
