@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using MedicalCenter.Services.Services;
+using MedicalCenter.Data.Seeds;
 
 namespace MedicalCenter
 {
@@ -84,6 +85,8 @@ namespace MedicalCenter
             RolesInitializer.RoleSeeder(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
 
             UsersInitializer.SeedUsers(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
+
+            DoctorsInitializer.SeedDocs(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

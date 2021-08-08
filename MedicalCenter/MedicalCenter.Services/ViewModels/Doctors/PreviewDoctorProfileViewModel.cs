@@ -18,5 +18,7 @@ namespace MedicalCenter.Services.ViewModels.Doctors
 
         [Required]
         public string ImagePath { get; set; }
+
+        public bool IsImageApproved { get; set; }
     }
 }

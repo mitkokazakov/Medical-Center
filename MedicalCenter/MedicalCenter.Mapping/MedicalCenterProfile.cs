@@ -32,7 +32,8 @@ namespace MedicalCenter.Mapping
             //Doctors
             this.CreateMap<Doctor, PreviewDoctorProfileViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(x => x.UserId))
-                .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension));
+                .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))
+                .ForMember(x => x.IsImageApproved, y => y.MapFrom(x => x.Image.IsApproved));
 
             //Schedule
             this.CreateMap<Hour, ListAllHoursViewModel>()

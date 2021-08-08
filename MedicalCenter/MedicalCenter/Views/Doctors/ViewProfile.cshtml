@@ -1,24 +1,5 @@
 ﻿@model MedicalCenter.Services.ViewModels.Doctors.PreviewDoctorProfileViewModel
 
-@*<div class="row d-inline">
-    <h1 class="col col-md-4 align-self-center offset-md-4">This is my profile</h1>
-
-    @if (String.IsNullOrEmpty(this.Model.ImagePath))
-    {
-        <img class="col col-md-4 align-self-center offset-md-4" width="250px" height="250px" src="~/images/unknowndoctor.jpg" />
-    }
-    else
-    {
-        <img class="col col-md-4 align-self-center offset-md-4" width="250px" height="250px" src="~/images/@this.Model.ImagePath" />
-    }
-
-
-    <div class="text-center col col-md-4 align-self-center offset-md-4">
-        @this.Model.Biography
-    </div>
-
-    <a class="btn btn-warning col col-md-4 align-self-center offset-md-4" asp-controller="Doctors" asp-action="ChangeProfile" asp-route-id="@this.Model.Id">Change</a>
-</div>*@
 
 
 <div class="container col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6 d-flex justify-content-center">
@@ -26,7 +7,7 @@
     <div class="card" style="width:400px">
         <h2 class="card-text text-center">This is my Profile</h2>
 
-        @if (String.IsNullOrEmpty(this.Model.ImagePath))
+        @if (String.IsNullOrEmpty(this.Model.ImagePath) || this.Model.IsImageApproved == false)
         {
             <img class="card-img-top" src="/images/unknowndoctor.jpg" alt="Card image" style="width:100%">
         }
