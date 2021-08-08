@@ -164,7 +164,7 @@ namespace MedicalCenter.Services.Services
 
         public ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId)
         {
-            var schedules = this.db.Schedules.Where(d => d.UserId == doctorId).ProjectTo<ListAllSchedulesViewModel>(this.mapper.ConfigurationProvider).ToList();
+            var schedules = this.db.Schedules.Where(d => d.UserId == doctorId).OrderBy(h => h.Date).ProjectTo<ListAllSchedulesViewModel>(this.mapper.ConfigurationProvider).ToList();
 
             return schedules;
         }

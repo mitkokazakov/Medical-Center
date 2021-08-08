@@ -13,7 +13,7 @@
 
                     @foreach (var h in day.Hours)
                     {
-                        @if (h.IsFree)
+                        @if (!h.IsFree)
                         {
                             <a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-success">@h.Hour</a>
                             <br />

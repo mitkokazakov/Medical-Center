@@ -1,4 +1,5 @@
 ﻿using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Data.Seeds;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,6 +29,8 @@ namespace MedicalCenter.Data
         {
             builder.Entity<BloodTestsPatients>()
                 .HasKey(x => new { x.BloodTestId, x.PatientId, x.ParameterId });
+
+            builder.Entity<Parameter>().HasData(ParamatersInitializer.SeedParams());
 
             base.OnModelCreating(builder);
         }
