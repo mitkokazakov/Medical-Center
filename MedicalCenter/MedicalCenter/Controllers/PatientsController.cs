@@ -32,15 +32,25 @@ namespace MedicalCenter.Controllers
             {
                 return this.BadRequest();
             }
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            await this.patientService.AddPatient(model,userId);
+            try
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var user = await this.userManager.GetUserAsync(this.User);
+                await this.patientService.AddPatient(model, userId);
 
-            await this.userManager.AddToRoleAsync(user, "Patient");
+                var user = await this.userManager.GetUserAsync(this.User);
 
-            return this.RedirectToAction("Index", "Home");
+                await this.userManager.AddToRoleAsync(user, "Patient");
+
+                return this.RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+
+                return this.RedirectToAction("Error","Home");
+            }
+            
         }
 
         public IActionResult ViewProfile()

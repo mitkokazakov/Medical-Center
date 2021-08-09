@@ -22,6 +22,11 @@ namespace MedicalCenter.Services.Services
         
         public async Task AddPatient(AddPatientFormModel patient,string userId)
         {
+            if (this.db.Patients.Any(p => p.EGN == patient.EGN))
+            {
+                throw new InvalidOperationException("Patient with the same EGN already exist.");
+            }
+
             Patient newPatient = this.mapper.Map<Patient>(patient);
 
             newPatient.UserId = userId;
