@@ -3,7 +3,7 @@
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 <ul class="nav nav-pills flex-column">
-    @if (this.User.IsInRole("Doctor"))
+    @if (this.User.IsInRole("Doctor") || this.User.IsInRole("Laboratory Assistant"))
     {
         <li class="nav-item"><a class="nav-link" id="about" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a></li>
     }

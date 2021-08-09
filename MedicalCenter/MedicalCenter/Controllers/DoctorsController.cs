@@ -47,7 +47,7 @@ namespace MedicalCenter.Controllers
             return this.RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult ViewProfile()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -57,7 +57,7 @@ namespace MedicalCenter.Controllers
             return this.View(doctor);
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult ChangeProfile(string id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -68,7 +68,7 @@ namespace MedicalCenter.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public async Task<IActionResult> ChangeProfile(string id, ChangeDoctorInfoFormModel model)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -117,7 +117,7 @@ namespace MedicalCenter.Controllers
             return this.RedirectToAction("Manage");
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult FindPatientByEGN()
         {
             return this.View();
@@ -131,17 +131,24 @@ namespace MedicalCenter.Controllers
 
        
         [HttpPost]
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult PatientProfile(FindPatientEGNFormModel model)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                return this.View();
             }
 
             var patient = this.patientService.FindPatientByEGN(model.EGN);
 
             return this.View(patient);
+        }
+
+        
+        [Authorize(Roles = "Laboratory Assistant")]
+        public IActionResult Tests()
+        {
+            return this.View();
         }
 
 
