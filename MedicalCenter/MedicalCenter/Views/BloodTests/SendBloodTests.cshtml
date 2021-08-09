@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MedicalCenter.Services.ViewModels.Parameters.ListAllParametersViewModel>
+
+<div class="d-flex justify-content-between">
+
+    <partial name="_SideNavBarDoctors" />
+
+    <div class="col-md-8">
+
+        <form class="form-check col-md-6" method="post" asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.ViewBag.UserId">
+            <h2 class="heading-margin text-center">All parameters</h2>
+            @foreach (var parameter in this.Model)
+            {
+                <div class="form-group">
+
+                    <input name="Box" class="form-control form-check-input" type="checkbox" value="@parameter.Name">
+                    <label>@parameter.Name</label>
+                </div>
+            }
+
+
+            <input class="btn btn-success mt-3 text-center" type="submit" value="Send" />
+        </form>
+
+    </div>
+
+</div>

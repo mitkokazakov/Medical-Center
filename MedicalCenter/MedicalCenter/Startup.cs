@@ -57,6 +57,7 @@ namespace MedicalCenter
             services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IDoctorService, DoctorService>();
+            services.AddTransient<IBloodTestsService, BloodTestsService>();
             services.AddControllersWithViews();
         }
 

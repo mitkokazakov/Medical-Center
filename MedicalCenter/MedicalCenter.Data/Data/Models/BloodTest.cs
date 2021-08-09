@@ -11,6 +11,7 @@ namespace MedicalCenter.Data.Data.Models
     {
         public BloodTest()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.BloodTestsPatients = new HashSet<BloodTestsPatients>();
         }
 

@@ -130,6 +130,35 @@ namespace MedicalCenter.Data.Seeds
                     await db.SaveChangesAsync();
                 }
             }
+
+            if (await userManager.FindByNameAsync
+                           ("mitko5@abv.bg") == null)
+            {
+                ApplicationUser user = new ApplicationUser();
+                user.UserName = "mitko5@abv.bg";
+                user.Email = "mitko5@abv.bg";
+                user.FirstName = "Natasha";
+                user.LastName = "Emerald";
+
+                var result = await userManager.CreateAsync
+                (user, "Jameson92@");
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user,
+                                        "Laboratory Assistant").Wait();
+
+                    Doctor doctor = new Doctor()
+                    {
+                        Specialty = "Laboratory Assistant",
+                        Biography = @"Natasha Emerald is Laboratory Assistant of Endocrinology and Metabolism at the University of Yaoundé and Consultant Endocrinologist at Yaoundé Central Hospital. He is head of the Laboratory of Molecular Medicine and Metabolism at the Biotechnology Centre of the University of Yaoundé. His main research areas are epidemiology and pathophysiology of diabetes in Africa, clinical trials, and diabetes in pregnancy. He is author of over 150 peer-reviewed publications and 10 book chapters including chapters in the French Textbook of Diabetes and the Oxford Textbook of Endocrinology and Diabetes.",
+                        UserId = user.Id
+                    };
+
+                    await db.Doctors.AddAsync(doctor);
+                    await db.SaveChangesAsync();
+                }
+            }
         }
     }
 }

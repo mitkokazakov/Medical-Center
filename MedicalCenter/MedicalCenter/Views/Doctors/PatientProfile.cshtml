@@ -4,21 +4,6 @@
 
     <partial name="_SideNavBarDoctors" />
 
-    @*<div class="offset-auto">
-        <h3>@this.Model.FullName - @this.Model.Age years old</h3>
-
-        <p>@this.Model.Country</p>
-
-        <p>@this.Model.Town</p>
-
-        <p>@this.Model.Address</p>
-
-        <p>@this.Model.EGN</p>
-
-        <p>@this.Model.DateOfBirth</p>
-    </div>*@
-
-
     <div class="card text-center bg-info text-white">
         <div class="card-header">
             Patient's EGN - @this.Model.EGN
@@ -27,8 +12,8 @@
             <h5 class="card-title">@this.Model.FullName</h5>
             <p class="card-text">@this.Model.Country</p>
             <p class="card-text">@this.Model.Town, @this.Model.Address</p>
-            <a href="#" class="btn btn-light">View Tests</a>
-            <a href="#" class="btn btn-light">Make Tests</a>
+            <a asp-controller="BloodTests" asp-action="ViewBloodTests" asp-route-id="@this.Model.UserId" class="btn btn-light">View Tests</a>
+            <a asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.Model.UserId" class="btn btn-light">Make Tests</a>
             <a href="#" class="btn btn-light">Go somewhere</a>
             <a href="#" class="btn btn-light">Go somewhere</a>
             <a href="#" class="btn btn-light">Go somewhere</a>

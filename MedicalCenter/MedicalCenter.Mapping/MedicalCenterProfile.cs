@@ -2,6 +2,7 @@
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Admin;
 using MedicalCenter.Services.ViewModels.Doctors;
+using MedicalCenter.Services.ViewModels.Parameters;
 using MedicalCenter.Services.ViewModels.Patients;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,9 @@ namespace MedicalCenter.Mapping
 
             this.CreateMap<Schedule, ListAllSchedulesViewModel>()
                 .ForMember(x => x.NameOfDay, y => y.MapFrom(x => x.Date.ToString("dddd, dd MMMM yyyy")));
+
+            //Parameters
+            this.CreateMap<Parameter, ListAllParametersViewModel>();
         }
     }
 }
