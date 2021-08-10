@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AllBloodTestsViewModel>
+
+<div class="d-flex">
+
+    <partial name="_SideNavBarDoctors" />
+
+    <table class="table table-info table-hover table-striped">
+
+        <tr>
+            
+            <th>Created</th>
+            <th>Sending Doctor</th>
+        </tr>
+
+        @foreach (var test in this.Model)
+        {
+            <tr>
+                
+                <td><a asp-controller="BloodTests" asp-action="" asp-route-id="@test.Id">@test.CreatedOn</a></td>
+                <td>@test.DoctorFullName</td>
+            </tr>
+        }
+    </table>
+
+</div>

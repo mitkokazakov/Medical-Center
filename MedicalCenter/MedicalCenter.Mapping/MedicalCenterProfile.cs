@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Admin;
+using MedicalCenter.Services.ViewModels.BloodTests;
 using MedicalCenter.Services.ViewModels.Doctors;
 using MedicalCenter.Services.ViewModels.Parameters;
 using MedicalCenter.Services.ViewModels.Patients;
@@ -47,6 +48,12 @@ namespace MedicalCenter.Mapping
 
             //Parameters
             this.CreateMap<Parameter, ListAllParametersViewModel>();
+
+            //BloodTests
+
+            this.CreateMap<BloodTest, AllBloodTestsViewModel>()
+                .ForMember(x => x.DoctorFullName, y => y.MapFrom(x => x.Doctor.User.FirstName + " " + x.Doctor.User.LastName))
+                .ForMember(x => x.CreatedOn, y => y.MapFrom(x => x.CreatedOn.ToString("d")));
         }
     }
 }

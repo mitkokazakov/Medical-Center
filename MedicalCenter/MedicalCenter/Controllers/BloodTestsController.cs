@@ -47,5 +47,20 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("Manage","Doctors");
         }
+
+        
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
+        public IActionResult AllBloodTests(string id)
+        {
+            var allTests = this.bloodTestsService.ListAllUnfinishedTests(id);
+
+            return this.View(allTests);
+        }
+
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
+        public IActionResult AllParameters(string id) 
+        {
+            return this.View();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.ViewModels.BloodTests;
 using MedicalCenter.Services.ViewModels.Parameters;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace MedicalCenter.Services.Services
             var allParameters = this.db.Parameters.ProjectTo<ListAllParametersViewModel>(this.mapper.ConfigurationProvider).ToList();
 
             return allParameters;
+        }
+
+        public IEnumerable<AllBloodTestsViewModel> ListAllUnfinishedTests(string patientId)
+        {
+            var allTests = this.db.BloodTests.Where(t => t.PatientId == patientId && t.IsCompleted == false).ProjectTo<AllBloodTestsViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allTests;
         }
 
         public async Task SendBloodTest(List<string> checkedParams, string doctorId, string patientId)

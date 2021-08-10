@@ -14,13 +14,13 @@
             <p class="card-text">Address - @this.Model.Town, @this.Model.Address</p>
             @if (this.User.IsInRole("Doctor"))
             {
-                <a asp-controller="BloodTests" asp-action="ViewBloodTests" asp-route-id="@this.Model.UserId" class="btn btn-light">View Tests</a>
-                <a asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.Model.UserId" class="btn btn-light">Make Tests</a>
+                <a asp-controller="BloodTests" asp-action="ViewBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light">View Tests</a>
+                <a asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light">Make Tests</a>
             }
 
             @if (this.User.IsInRole("Laboratory Assistant"))
             {
-                <a asp-controller="BloodTests" asp-action="FillBloodTests" asp-route-id="@this.Model.UserId" class="btn btn-light">Fill Tests</a>
+                <a asp-controller="BloodTests" asp-action="AllBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light">Fill Tests</a>
             }
 
         </div>
