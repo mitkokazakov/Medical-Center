@@ -29,7 +29,7 @@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Overview">Admin</a>
+                                <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Administrator" asp-action="Overview">Admin</a>
                             </li>
                         }
                         @if (this.User.IsInRole("Doctor"))

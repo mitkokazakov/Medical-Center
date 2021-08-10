@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MedicalCenter.Services.Services;
 using MedicalCenter.Data.Seeds;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalCenter
 {
@@ -58,7 +59,13 @@ namespace MedicalCenter
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IDoctorService, DoctorService>();
             services.AddTransient<IBloodTestsService, BloodTestsService>();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
+
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,8 +107,15 @@ namespace MedicalCenter
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Administrator",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                
+
                 endpoints.MapRazorPages();
             });
         }
