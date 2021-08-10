@@ -23,6 +23,32 @@ namespace MedicalCenter.Services.Services
             this.db = db;
         }
 
+        public IEnumerable<ListAllParametersViewModel> AllParametersForSingleTest(string testId)
+        {
+            var allParams = this.db.BloodTestsPatients.Where(bt => bt.BloodTestId == testId).ProjectTo<ListAllParametersViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allParams;
+        }
+
+        public async Task FillBloodTest(double[] parameters, string testId)
+        {
+            BloodTest test = this.db.BloodTests.FirstOrDefault(t => t.Id == testId);
+
+            test.IsCompleted = true;
+
+            var paramsToEnter = this.db.BloodTestsPatients.Where(t => t.BloodTestId == testId);
+
+            int count = 0;
+
+            foreach (var p in paramsToEnter)
+            {
+                p.Value = parameters[count];
+                count++;
+            }
+
+            await this.db.SaveChangesAsync();
+        }
+
         public IEnumerable<ListAllParametersViewModel> ListAllParameters()
         {
             var allParameters = this.db.Parameters.ProjectTo<ListAllParametersViewModel>(this.mapper.ConfigurationProvider).ToList();
@@ -41,7 +67,7 @@ namespace MedicalCenter.Services.Services
         {
             Doctor doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == doctorId);
 
-            Patient patient = this.db.Patients.FirstOrDefault(p => p.UserId == patientId);
+            Patient patient = this.db.Patients.FirstOrDefault(p => p.Id == patientId);
 
             BloodTest bloodTest = new BloodTest()
             {

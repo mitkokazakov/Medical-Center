@@ -48,6 +48,9 @@ namespace MedicalCenter.Mapping
 
             //Parameters
             this.CreateMap<Parameter, ListAllParametersViewModel>();
+            this.CreateMap<BloodTestsPatients, ListAllParametersViewModel>()
+                .ForMember(x => x.Name, y => y.MapFrom(x => x.Paramater.Name))
+                .ForMember(x => x.Id, y => y.MapFrom(x => x.ParameterId));
 
             //BloodTests
 

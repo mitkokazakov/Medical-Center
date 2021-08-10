@@ -15,5 +15,9 @@ namespace MedicalCenter.Services.Services
         Task SendBloodTest(List<string> checkedParams, string doctorId, string patientId);
 
         IEnumerable<AllBloodTestsViewModel> ListAllUnfinishedTests(string patientId);
+
+        IEnumerable<ListAllParametersViewModel> AllParametersForSingleTest(string testId);
+
+        Task FillBloodTest(double[] parameters, string testId);
     }
 }

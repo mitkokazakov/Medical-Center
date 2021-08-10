@@ -60,7 +60,20 @@ namespace MedicalCenter.Controllers
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult AllParameters(string id) 
         {
-            return this.View();
+            this.ViewBag.TestId = id;
+
+            var allParams = this.bloodTestsService.AllParametersForSingleTest(id);
+
+            return this.View(allParams);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Doctor, Laboratory Assistant")]
+        public async Task<IActionResult> FillTest(double[] parameter,string id)
+        {
+            await this.bloodTestsService.FillBloodTest(parameter,id);
+
+            return this.RedirectToAction("Tests","Doctors");
         }
     }
 }
