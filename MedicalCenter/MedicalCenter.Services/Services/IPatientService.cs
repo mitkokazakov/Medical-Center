@@ -1,5 +1,6 @@
 ﻿using MedicalCenter.Services.ViewModels.Patients;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MedicalCenter.Services.Services
@@ -15,5 +16,7 @@ namespace MedicalCenter.Services.Services
         PatientProfileViewModel FindPatientByEGN(string egn);
 
         //PatientProfileViewModel FindPatientByName(string name);
+
+        IEnumerable<PatientProfileViewModel> GetAllPatients();
     }
 }

@@ -6,6 +6,21 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        @*@if (this.User.IsInRole("Doctor") || this.User.IsInRole("Laboratory Assistant"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a>
+            </li>
+        }
+
+        @if (this.User.IsInRole("Patient"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Patients" asp-action="ViewProfile">Patient's Profile</a>
+            </li>
+        }*@
+
+
         @if (!this.User.IsInRole("Patient") && !this.User.IsInRole("Doctor") && !this.User.IsInRole("Admin") && !this.User.IsInRole("Laboratory Assistant"))
         {
             <li class="nav-item">

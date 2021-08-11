@@ -65,7 +65,7 @@ namespace MedicalCenter
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
-            services.AddRazorPages();
+            //services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

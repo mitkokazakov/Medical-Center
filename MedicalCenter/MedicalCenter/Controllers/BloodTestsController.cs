@@ -18,9 +18,12 @@ namespace MedicalCenter.Controllers
             this.bloodTestsService = bloodTestsService;
         }
 
-        public IActionResult ViewBloodTests()
+        [Authorize(Roles = "Doctor")]
+        public IActionResult ViewBloodTests(string id)
         {
-            return View();
+            var allFinishedTests = this.bloodTestsService.ListAllFinishedTests(id);
+
+            return View(allFinishedTests);
         }
 
         [Authorize(Roles = "Doctor")]
@@ -74,6 +77,12 @@ namespace MedicalCenter.Controllers
             await this.bloodTestsService.FillBloodTest(parameter,id);
 
             return this.RedirectToAction("Tests","Doctors");
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult SeeResults()
+        {
+            return this.View();
         }
     }
 }

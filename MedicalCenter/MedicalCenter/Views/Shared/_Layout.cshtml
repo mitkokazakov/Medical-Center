@@ -23,13 +23,26 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+
+                        @if (this.User.IsInRole("Doctor") || this.User.IsInRole("Laboratory Assistant"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a>
+                            </li>
+                        }
+
+                        @if (this.User.IsInRole("Patient"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Patients" asp-action="ViewProfile">Patient's Profile</a>
+                            </li>
+                        }
+
+
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Administrator" asp-action="Overview">Admin</a>
+                                <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Administrator" asp-action="Overview">Admin Panel</a>
                             </li>
                         }
                         @if (this.User.IsInRole("Doctor"))

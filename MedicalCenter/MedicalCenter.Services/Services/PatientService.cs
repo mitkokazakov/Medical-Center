@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Patients;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -67,6 +69,13 @@ namespace MedicalCenter.Services.Services
             }
 
             return patientProfile;
+        }
+
+        public IEnumerable<PatientProfileViewModel> GetAllPatients()
+        {
+            var allPatients = this.db.Patients.ProjectTo<PatientProfileViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allPatients;
         }
 
         //public PatientProfileViewModel FindPatientByName(string name)

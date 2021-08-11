@@ -63,6 +63,13 @@ namespace MedicalCenter.Services.Services
             return allTests;
         }
 
+        public IEnumerable<AllBloodTestsViewModel> ListAllFinishedTests(string patientId)
+        {
+            var allTests = this.db.BloodTests.Where(t => t.PatientId == patientId && t.IsCompleted == true).ProjectTo<AllBloodTestsViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allTests;
+        }
+
         public async Task SendBloodTest(List<string> checkedParams, string doctorId, string patientId)
         {
             Doctor doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == doctorId);
