@@ -101,5 +101,12 @@ namespace MedicalCenter.Services.Services
             await this.db.BloodTests.AddAsync(bloodTest);
             await this.db.SaveChangesAsync();
         }
+
+        public IEnumerable<ResultsViewModel> GetSingleResult(string testId)
+        {
+            var results = this.db.BloodTestsPatients.Where(tp => tp.BloodTestId == testId).ProjectTo<ResultsViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return results;
+        }
     }
 }

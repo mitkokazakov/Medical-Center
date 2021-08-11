@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ResultsViewModel>
+
+<div class="d-flex">
+
+    <partial name="_SideNavBarDoctors" />
+
+    <table class="table table-info table-hover table-striped table-bordered text-center">
+
+        <tr>
+
+            <th>Prameter Name</th>
+            <th>Value</th>
+            <th>Min Value</th>
+            <th>Max Value</th>
+            <th>High / Low</th>
+        </tr>
+
+        @foreach (var parameter in this.Model)
+        {
+            <tr>
+
+                <td>@parameter.Name</td>
+                <td>@parameter.Value</td>
+                <td>@parameter.MinValue</td>
+                <td>@parameter.MaxValue</td>
+                <td>@parameter.HighLow</td>
+            </tr>
+        }
+    </table>
+
+</div>

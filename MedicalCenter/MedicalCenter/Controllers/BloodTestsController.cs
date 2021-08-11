@@ -80,9 +80,11 @@ namespace MedicalCenter.Controllers
         }
 
         [Authorize(Roles = "Doctor")]
-        public IActionResult SeeResults()
+        public IActionResult SeeResults(string id)
         {
-            return this.View();
+            var results = this.bloodTestsService.GetSingleResult(id);
+
+            return this.View(results);
         }
     }
 }

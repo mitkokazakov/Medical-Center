@@ -57,6 +57,13 @@ namespace MedicalCenter.Mapping
             this.CreateMap<BloodTest, AllBloodTestsViewModel>()
                 .ForMember(x => x.DoctorFullName, y => y.MapFrom(x => x.Doctor.User.FirstName + " " + x.Doctor.User.LastName))
                 .ForMember(x => x.CreatedOn, y => y.MapFrom(x => x.CreatedOn.ToString("d")));
+
+            this.CreateMap<BloodTestsPatients, ResultsViewModel>()
+                .ForMember(x => x.Name, y => y.MapFrom(x => x.Paramater.Name))
+                .ForMember(x => x.Value, y => y.MapFrom(x => x.Value))
+                .ForMember(x => x.MinValue, y => y.MapFrom(x => x.Paramater.MinValue))
+                .ForMember(x => x.MaxValue, y => y.MapFrom(x => x.Paramater.MaxValue))
+                .ForMember(x => x.HighLow, y => y.MapFrom(x => x.Value < x.Paramater.MinValue ? "L" : x.Value > x.Paramater.MaxValue ? "H" : "-"));
         }
     }
 }

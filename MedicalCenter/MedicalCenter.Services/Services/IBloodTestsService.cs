@@ -21,5 +21,7 @@ namespace MedicalCenter.Services.Services
         IEnumerable<ListAllParametersViewModel> AllParametersForSingleTest(string testId);
 
         Task FillBloodTest(double[] parameters, string testId);
+
+        IEnumerable<ResultsViewModel> GetSingleResult(string testId);
     }
 }
