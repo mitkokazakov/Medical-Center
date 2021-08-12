@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ListAllDoctorsViewModel>
+
+<div class="row offset-md-1">
+
+    @foreach (var doc in this.Model)
+    {
+        <div class="col-md-3 m-4">
+            <div class="card" style="width: 18rem;">
+                @if (String.IsNullOrEmpty(doc.ImagePath) || doc.IsImageApproved == false)
+                {
+                    <img class="card-img-top" src="~/images/unknowndoctor.jpg" alt="Card image cap" style="width: 286px; height: 286px">
+                }
+                else
+                {
+                    <img class="card-img-top" src="~/images/@doc.ImagePath" alt="Card image cap">
+                }
+
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">@doc.FullName</h5>
+                    <p class="card-text text-center">@doc.Specialty</p>
+                    <a href="#" class="btn btn-primary text-center">Appointment</a>
+                    <a href="#" class="btn btn-primary text-center">Appointment</a>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

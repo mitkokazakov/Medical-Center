@@ -95,30 +95,6 @@ namespace MedicalCenter.Controllers
             return this.View(schedules);
         }
 
-        //[Authorize(Roles = "Doctor")]
-        //public IActionResult MakeSchedule()
-        //{
-            
-        //    return this.View();
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles = "Doctor")]
-        //public async Task<IActionResult> MakeSchedule(InputScheduleFormModel model)
-        //{
-        //    var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    if (!this.ModelState.IsValid)
-        //    {
-                
-        //        return this.View();
-        //    }
-
-        //    await this.doctorService.AddFreeHour(doctorId, model);
-
-        //    return this.RedirectToAction("Manage");
-        //}
-
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult FindPatientByEGN()
         {
@@ -151,6 +127,13 @@ namespace MedicalCenter.Controllers
         public IActionResult Tests()
         {
             return this.View();
+        }
+
+        public IActionResult AllDoctors()
+        {
+            var allDoctors = this.doctorService.GetAllDoctors();
+
+            return this.View(allDoctors);
         }
 
         

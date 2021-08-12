@@ -38,6 +38,11 @@ namespace MedicalCenter.Mapping
                 .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))
                 .ForMember(x => x.IsImageApproved, y => y.MapFrom(x => x.Image.IsApproved));
 
+            this.CreateMap<Doctor, ListAllDoctorsViewModel>()
+                .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))
+                .ForMember(x => x.FullName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName))
+                .ForMember(x => x.IsImageApproved, y => y.MapFrom(x => x.ImageId == null ? false : x.Image.IsApproved)); 
+
             //Schedule
             this.CreateMap<Hour, ListAllHoursViewModel>()
                 .ForMember(x => x.Hour, y => y.MapFrom(x => x.FreeHour.ToString("HH:mm")))

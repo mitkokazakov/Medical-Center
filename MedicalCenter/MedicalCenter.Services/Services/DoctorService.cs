@@ -127,6 +127,11 @@ namespace MedicalCenter.Services.Services
 
         }
 
-        
+        public IEnumerable<ListAllDoctorsViewModel> GetAllDoctors()
+        {
+            var allDoctors = this.db.Doctors.ProjectTo<ListAllDoctorsViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allDoctors;
+        }
     }
 }

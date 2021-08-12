@@ -40,7 +40,7 @@ namespace MedicalCenter.Controllers
 
             await this.scheduleService.AddFreeHour(doctorId, model);
 
-            return this.RedirectToAction("Manage");
+            return this.RedirectToAction("Manage","Doctors");
         }
     }
 }
