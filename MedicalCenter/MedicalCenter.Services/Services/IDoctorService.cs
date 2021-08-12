@@ -17,8 +17,8 @@ namespace MedicalCenter.Services.Services
 
         Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model);
 
-        Task AddFreeHour(string doctorId, InputScheduleFormModel model);
+        //Task AddFreeHour(string doctorId, InputScheduleFormModel model);
 
-        ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
+        //ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
     }
 }

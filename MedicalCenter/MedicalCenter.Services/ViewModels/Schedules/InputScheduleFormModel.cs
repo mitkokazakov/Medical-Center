@@ -3,7 +3,7 @@ using MedicalCenter.Services.Common;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MedicalCenter.Services.ViewModels.Doctors
+namespace MedicalCenter.Services.ViewModels.Schedules
 {
     public class InputScheduleFormModel
     {

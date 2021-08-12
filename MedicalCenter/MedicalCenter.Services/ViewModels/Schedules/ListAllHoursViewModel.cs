@@ -1,5 +1,5 @@
 ﻿
-namespace MedicalCenter.Services.ViewModels.Doctors
+namespace MedicalCenter.Services.ViewModels.Schedules
 {
     public class ListAllHoursViewModel
     {

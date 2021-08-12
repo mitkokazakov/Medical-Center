@@ -5,6 +5,7 @@ using MedicalCenter.Services.ViewModels.BloodTests;
 using MedicalCenter.Services.ViewModels.Doctors;
 using MedicalCenter.Services.ViewModels.Parameters;
 using MedicalCenter.Services.ViewModels.Patients;
+using MedicalCenter.Services.ViewModels.Schedules;
 using System;
 using System.Collections.Generic;
 using System.Linq;

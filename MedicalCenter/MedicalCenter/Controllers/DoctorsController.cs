@@ -17,12 +17,14 @@ namespace MedicalCenter.Controllers
     {
         private readonly IDoctorService doctorService;
         private readonly IPatientService patientService;
+        private readonly IScheduleService scheduleService;
 
 
-        public DoctorsController(IDoctorService doctorService, IPatientService patientService)
+        public DoctorsController(IDoctorService doctorService, IPatientService patientService, IScheduleService scheduleService)
         {
             this.doctorService = doctorService;
             this.patientService = patientService;
+            this.scheduleService = scheduleService;
         }
 
         [Authorize(Roles = "Doctor")]
@@ -88,34 +90,34 @@ namespace MedicalCenter.Controllers
         {
             var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var schedules = this.doctorService.ListAllFreeHours(doctorId).ToList();
+            var schedules = this.scheduleService.ListAllFreeHours(doctorId).ToList();
 
             return this.View(schedules);
         }
 
-        [Authorize(Roles = "Doctor")]
-        public IActionResult MakeSchedule()
-        {
+        //[Authorize(Roles = "Doctor")]
+        //public IActionResult MakeSchedule()
+        //{
             
-            return this.View();
-        }
+        //    return this.View();
+        //}
 
-        [HttpPost]
-        [Authorize(Roles = "Doctor")]
-        public async Task<IActionResult> MakeSchedule(InputScheduleFormModel model)
-        {
-            var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //[HttpPost]
+        //[Authorize(Roles = "Doctor")]
+        //public async Task<IActionResult> MakeSchedule(InputScheduleFormModel model)
+        //{
+        //    var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (!this.ModelState.IsValid)
-            {
+        //    if (!this.ModelState.IsValid)
+        //    {
                 
-                return this.View();
-            }
+        //        return this.View();
+        //    }
 
-            await this.doctorService.AddFreeHour(doctorId, model);
+        //    await this.doctorService.AddFreeHour(doctorId, model);
 
-            return this.RedirectToAction("Manage");
-        }
+        //    return this.RedirectToAction("Manage");
+        //}
 
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult FindPatientByEGN()
