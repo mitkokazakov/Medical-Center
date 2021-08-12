@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 
 </head>
-<body>
+<body class="bg-info">
 
 
     <header clas="topheader">
@@ -67,7 +67,7 @@
 
 
 
-    <div class="container mr-4 ml-4">
+    <div class="container mr-4 ml-4 ">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -78,7 +78,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - MedicalCenter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.UtcNow.Year - Zara Medical Center
         </div>
     </footer>
 
