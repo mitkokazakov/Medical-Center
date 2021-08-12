@@ -64,5 +64,16 @@ namespace MedicalCenter.Services.Services
 
             return schedules;
         }
+
+        public async Task SaveHour(int hourId, SaveHourFormModel model, string patientId)
+        {
+            var currentHour = this.db.Hours.FirstOrDefault(h => h.Id == hourId);
+
+            currentHour.UserId = patientId;
+            currentHour.Reason = model.Reason;
+            currentHour.IsFree = false;
+
+            await this.db.SaveChangesAsync();
+        }
     }
 }

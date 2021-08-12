@@ -15,12 +15,12 @@
                     {
                         @if (!h.IsFree)
                         {
-                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-success">@h.Hour</a>
+                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-id="@h.HourId" class="btn btn-danger">@h.Hour</a>
                             <br />
                         }
                         else
                         {
-                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-ID="@h.HourId" class="btn btn-secondary disabled">@h.Hour</a>
+                            <a asp-controller="Patient" asp-action="SaveHour" asp-route-id="@h.HourId" class="btn btn-success disabled">@h.Hour</a>
                             <br />
                         }
 

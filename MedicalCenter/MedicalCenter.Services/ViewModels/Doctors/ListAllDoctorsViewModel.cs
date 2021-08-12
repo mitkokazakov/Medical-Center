@@ -8,7 +8,7 @@ namespace MedicalCenter.Services.ViewModels.Doctors
 {
     public class ListAllDoctorsViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FullName { get; set; }
         public string Biography { get; set; }
         public string Specialty { get; set; }

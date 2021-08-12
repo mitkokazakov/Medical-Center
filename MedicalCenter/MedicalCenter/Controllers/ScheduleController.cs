@@ -40,7 +40,40 @@ namespace MedicalCenter.Controllers
 
             await this.scheduleService.AddFreeHour(doctorId, model);
 
-            return this.RedirectToAction("Manage","Doctors");
+            return this.RedirectToAction("Manage", "Doctors");
+        }
+
+
+        [Authorize(Roles = "Patient")]
+        public IActionResult FreeHours(string id)
+        {
+            var allFreeHours = this.scheduleService.ListAllFreeHours(id);
+
+            return this.View(allFreeHours);
+        }
+
+        [Authorize(Roles = "Patient")]
+        public IActionResult MakeAppointment(int id)
+        {
+            this.ViewBag.HourId = id;
+
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> MakeAppointment(SaveHourFormModel model, int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            var patientId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await this.scheduleService.SaveHour(id, model, patientId);
+
+            return this.RedirectToAction("AllDoctors", "Doctors");
         }
     }
 }

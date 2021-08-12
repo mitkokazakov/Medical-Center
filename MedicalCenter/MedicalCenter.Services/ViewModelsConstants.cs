@@ -17,6 +17,10 @@ namespace MedicalCenter.Services
         public const int DoctorSpecialtyMinLen = 3;
         public const int DoctorSpecialtyMaxLen = 40;
         public const int DoctorBiographyMinLen = 10;
-        
+
+        //Schedules
+        public const int SaveHourReasonMinLen = 5;
+        public const int SaveHourReasonMaxLen = 100;
+
     }
 }
