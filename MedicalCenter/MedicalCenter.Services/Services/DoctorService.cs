@@ -51,7 +51,7 @@ namespace MedicalCenter.Services.Services
             await this.db.Doctors.AddAsync(doctor);
             await this.db.SaveChangesAsync();
 
-            this.SavePicture(model, image.Id);
+            this.SavePicture(model.Image, image.Id);
         }
 
         public async Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model)
@@ -75,7 +75,7 @@ namespace MedicalCenter.Services.Services
 
             await this.db.SaveChangesAsync();
 
-            this.ChangePicture(model, image.Id);
+            this.SavePicture(model.Image, image.Id);
 
 
         }
@@ -94,11 +94,11 @@ namespace MedicalCenter.Services.Services
             return this.db.Doctors.Any(d => d.UserId == userId);
         }
 
-        private void SavePicture(AddDoctorFormModel model, string pictureName)
+        private void SavePicture(IFormFile image, string pictureName)
         {
             string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
 
-            string extension = Path.GetExtension(model.Image.FileName);
+            string extension = Path.GetExtension(image.FileName);
 
             string pictureFileName = pictureName + extension;
 
@@ -106,27 +106,27 @@ namespace MedicalCenter.Services.Services
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                model.Image.CopyTo(fileStream);
+               image.CopyTo(fileStream);
             }
 
         }
 
-        private void ChangePicture(ChangeDoctorInfoFormModel model, string pictureName)
-        {
-            string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
+        //private void ChangePicture(ChangeDoctorInfoFormModel model, string pictureName)
+        //{
+        //    string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
 
-            string extension = Path.GetExtension(model.Image.FileName);
+        //    string extension = Path.GetExtension(model.Image.FileName);
 
-            string pictureFileName = pictureName + extension;
+        //    string pictureFileName = pictureName + extension;
 
-            string filePath = Path.Combine(uploadsFolder, pictureFileName);
+        //    string filePath = Path.Combine(uploadsFolder, pictureFileName);
 
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                model.Image.CopyTo(fileStream);
-            }
+        //    using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //    {
+        //        model.Image.CopyTo(fileStream);
+        //    }
 
-        }
+        //}
 
         public IEnumerable<ListAllDoctorsViewModel> GetAllDoctors()
         {
