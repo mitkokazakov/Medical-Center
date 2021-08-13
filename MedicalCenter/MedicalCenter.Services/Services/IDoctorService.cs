@@ -1,4 +1,5 @@
-﻿using MedicalCenter.Services.ViewModels.Doctors;
+﻿using MedicalCenter.Services.ViewModels.Diagnoses;
+using MedicalCenter.Services.ViewModels.Doctors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace MedicalCenter.Services.Services
         Task ChangeDoctorInfo(string userId, ChangeDoctorInfoFormModel model);
 
         IEnumerable<ListAllDoctorsViewModel> GetAllDoctors();
+
+        Task WriteDiagnose(string patientId, string doctorId, DiagnoseFormModel model);
     }
 }

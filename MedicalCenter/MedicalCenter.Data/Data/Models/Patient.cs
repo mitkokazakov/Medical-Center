@@ -12,6 +12,7 @@ namespace MedicalCenter.Data.Data.Models
             this.Id = Guid.NewGuid().ToString();
             this.BloodTests = new HashSet<BloodTest>();
             this.BloodTestsPatients = new HashSet<BloodTestsPatients>();
+            this.MedicalExaminations = new HashSet<MedicalExamination>();
         }
 
         [Key]
@@ -44,5 +45,6 @@ namespace MedicalCenter.Data.Data.Models
 
         public virtual ICollection<BloodTest> BloodTests { get; set; }
         public virtual ICollection<BloodTestsPatients> BloodTestsPatients { get; set; }
+        public virtual ICollection<MedicalExamination> MedicalExaminations { get; set; }
     }
 }

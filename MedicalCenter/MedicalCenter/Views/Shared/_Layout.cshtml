@@ -73,6 +73,15 @@
 
     <div class="container mr-4 ml-4 ">
         <main role="main" class="pb-3">
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@TempData["Error"]</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
             @RenderBody()
         </main>
     </div>

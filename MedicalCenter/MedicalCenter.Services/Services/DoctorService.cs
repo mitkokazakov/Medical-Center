@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.ViewModels.Diagnoses;
 using MedicalCenter.Services.ViewModels.Doctors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -132,6 +133,22 @@ namespace MedicalCenter.Services.Services
             var allDoctors = this.db.Doctors.ProjectTo<ListAllDoctorsViewModel>(this.mapper.ConfigurationProvider).ToList();
 
             return allDoctors;
+        }
+
+        public async Task WriteDiagnose(string patientId, string doctorId, DiagnoseFormModel model)
+        {
+            var doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == doctorId);
+
+            var medicalExamination = new MedicalExamination()
+            {
+                Diagnose = model.Diagnose,
+                Date = DateTime.UtcNow,
+                PatientId = patientId,
+                Doctor = doctor
+            };
+
+            await this.db.MedicalExamination.AddAsync(medicalExamination);
+            await this.db.SaveChangesAsync();
         }
     }
 }

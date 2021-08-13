@@ -22,5 +22,9 @@ namespace MedicalCenter.Services
         public const int SaveHourReasonMinLen = 5;
         public const int SaveHourReasonMaxLen = 100;
 
+        //Diagnose
+
+        public const int DiagnoseMinLen = 5;
+        public const int DiagnoseMaxLen = 150;
     }
 }

@@ -10,6 +10,7 @@ namespace MedicalCenter.Data.Data.Models
         public Doctor()
         {
             this.Schedules = new HashSet<Schedule>();
+            this.MedicalExaminations = new HashSet<MedicalExamination>();
         }
 
 
@@ -36,5 +37,6 @@ namespace MedicalCenter.Data.Data.Models
         public virtual Image Image { get; set; }
 
         public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual ICollection<MedicalExamination> MedicalExaminations { get; set; }
     }
 }

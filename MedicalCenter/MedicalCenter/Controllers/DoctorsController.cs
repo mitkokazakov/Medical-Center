@@ -119,6 +119,13 @@ namespace MedicalCenter.Controllers
 
             var patient = this.patientService.FindPatientByEGN(model.EGN);
 
+            if (patient == null)
+            {
+                TempData["Error"] = "Patient with that EGN does not exist. Try again!!!";
+
+                return this.View("FindPatientByEGN");
+            }
+
             return this.View(patient);
         }
 

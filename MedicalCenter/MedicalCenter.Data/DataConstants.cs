@@ -28,5 +28,10 @@ namespace MedicalCenter.Data
         //Parameters
         public const int ParameterNameMaxLen = 40;
 
+        //MedicalExamination
+
+        public const int ExaminationDiagnoseMaxLen = 150;
+        public const int ExaminationDiagnoseMinLen = 5;
+
     }
 }

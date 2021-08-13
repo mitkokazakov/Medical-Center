@@ -18,6 +18,7 @@ namespace MedicalCenter.Data
         public DbSet<BloodTest> BloodTests { get; set; }
         public DbSet<BloodTestsPatients> BloodTestsPatients { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
+        public DbSet<MedicalExamination> MedicalExamination { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
