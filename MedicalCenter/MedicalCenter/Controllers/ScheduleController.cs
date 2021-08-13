@@ -75,5 +75,13 @@ namespace MedicalCenter.Controllers
 
             return this.RedirectToAction("AllDoctors", "Doctors");
         }
+
+        [Authorize(Roles = "Doctor")]
+        public IActionResult SavedHour(int id)
+        {
+            var hourInfo = this.scheduleService.SavedHourInfo(id);
+
+            return this.View(hourInfo);
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace MedicalCenter.Services.Services
 
         ICollection<ListAllSchedulesViewModel> ListAllFreeHours(string doctorId);
         Task SaveHour(int hourId, SaveHourFormModel model, string patientId);
+
+        SavedHourInfoViewModel SavedHourInfo(int id);
     }
 }

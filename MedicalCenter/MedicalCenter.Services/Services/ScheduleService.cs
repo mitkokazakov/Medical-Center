@@ -65,6 +65,15 @@ namespace MedicalCenter.Services.Services
             return schedules;
         }
 
+        public SavedHourInfoViewModel SavedHourInfo(int id)
+        {
+            var hour = this.db.Hours.FirstOrDefault(h => h.Id == id);
+
+            var savedHourInfo = this.mapper.Map<SavedHourInfoViewModel>(hour);
+
+            return savedHourInfo;
+        }
+
         public async Task SaveHour(int hourId, SaveHourFormModel model, string patientId)
         {
             var currentHour = this.db.Hours.FirstOrDefault(h => h.Id == hourId);

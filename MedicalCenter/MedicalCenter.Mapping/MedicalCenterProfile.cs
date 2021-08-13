@@ -50,6 +50,12 @@ namespace MedicalCenter.Mapping
                 .ForMember(x => x.HourId, y => y.MapFrom(x => x.Id))
                 .ForMember(x => x.IsFree, y => y.MapFrom(x => x.IsFree));
 
+            this.CreateMap<Hour, SavedHourInfoViewModel>()
+                .ForMember(x => x.Day, y => y.MapFrom(x => x.Schedule.Date.ToString("dddd, dd MMMM yyyy")))
+                .ForMember(x => x.PatientFullName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName))
+                .ForMember(x => x.PatientId, y => y.MapFrom(x => x.UserId))
+                .ForMember(x => x.FreeHour, y => y.MapFrom(x => x.FreeHour.ToString("HH:mm")));
+
             this.CreateMap<Schedule, ListAllSchedulesViewModel>()
                 .ForMember(x => x.NameOfDay, y => y.MapFrom(x => x.Date.ToString("dddd, dd MMMM yyyy")));
 
