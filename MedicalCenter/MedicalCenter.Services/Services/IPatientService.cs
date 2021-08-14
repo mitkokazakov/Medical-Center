@@ -18,5 +18,7 @@ namespace MedicalCenter.Services.Services
         //PatientProfileViewModel FindPatientByName(string name);
 
         IEnumerable<PatientProfileViewModel> GetAllPatients();
+
+        PatientTestsAndDiagnosesViewModel GetPatientMedicalRecord(string patientId);
     }
 }

@@ -6,6 +6,10 @@
             <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" asp-controller="Schedule" asp-action="MakeSchedule">Make Schedule</a>
         }
 
-        <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" asp-controller="Doctors" asp-action="FindPatientByEGN">Find Patient By EGN</a>
+        @if (this.User.IsInRole("Laboratory Assistant"))
+        {
+    <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" asp-controller="Doctors" asp-action="FindPatientByEGN">Find Patient By EGN</a>
+        }
+        
     </div>
 </div>

@@ -47,10 +47,10 @@ namespace MedicalCenter.Controllers
             }
             catch (Exception ex)
             {
-
-                return this.RedirectToAction("Error","Home");
+                TempData["Error"] = "Patient with that EGN already exist!!.";
+                return this.View();
             }
-            
+
         }
 
         public IActionResult ViewProfile()
@@ -72,11 +72,24 @@ namespace MedicalCenter.Controllers
                 return this.BadRequest();
             }
 
-            await this.patientService.ChangePatient(model,userId);
+            await this.patientService.ChangePatient(model, userId);
 
             return this.RedirectToAction("Index", "Home");
         }
 
-        
+        [Authorize(Roles = "Patient,Admin,Doctor")]
+        public IActionResult ViewRecord(string id)
+        {
+            if (this.User.IsInRole("Patient"))
+            {
+                id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            }
+
+            var patientMedicalRecord = this.patientService.GetPatientMedicalRecord(id);
+
+            return this.View(patientMedicalRecord);
+        }
+
+
     }
 }

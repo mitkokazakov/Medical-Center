@@ -2,6 +2,7 @@
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Admin;
 using MedicalCenter.Services.ViewModels.BloodTests;
+using MedicalCenter.Services.ViewModels.Diagnoses;
 using MedicalCenter.Services.ViewModels.Doctors;
 using MedicalCenter.Services.ViewModels.Parameters;
 using MedicalCenter.Services.ViewModels.Patients;
@@ -25,6 +26,11 @@ namespace MedicalCenter.Mapping
                 .ForMember(x => x.Age, y => y.MapFrom(x => DateTime.Now.Year - x.DateOfBirth.Year))
                 .ForMember(x => x.FullName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName))
                 .ForMember(x => x.DateOfBirth, y => y.MapFrom(x => x.DateOfBirth.ToString()));
+
+            this.CreateMap<Patient, PatientTestsAndDiagnosesViewModel>()
+                .ForMember(x => x.PatientId, y => y.MapFrom(x => x.Id))
+                .ForMember(x => x.BloodTests, y => y.MapFrom(x => x.BloodTests.Where(bt => bt.IsCompleted == true)))
+                .ForMember(x => x.AllMedicalExaminations, y => y.MapFrom(x => x.MedicalExaminations));
 
             //Images
             this.CreateMap<Image, AllImagesToApproveViewModel>()
@@ -77,6 +83,9 @@ namespace MedicalCenter.Mapping
                 .ForMember(x => x.MinValue, y => y.MapFrom(x => x.Paramater.MinValue))
                 .ForMember(x => x.MaxValue, y => y.MapFrom(x => x.Paramater.MaxValue))
                 .ForMember(x => x.HighLow, y => y.MapFrom(x => x.Value < x.Paramater.MinValue ? "L" : x.Value > x.Paramater.MaxValue ? "H" : "-"));
+
+            //MedicalExaminations
+            this.CreateMap<MedicalExamination, ListAllMedicalExaminationsViewModel>();
         }
     }
 }

@@ -78,6 +78,20 @@ namespace MedicalCenter.Services.Services
             return allPatients;
         }
 
+        public PatientTestsAndDiagnosesViewModel GetPatientMedicalRecord(string patientId)
+        {
+            var patient = this.db.Patients.FirstOrDefault(p => p.Id == patientId);
+
+            if (patient == null)
+            {
+                patient = this.db.Patients.FirstOrDefault(p => p.UserId == patientId);
+            }
+
+            var patientMedicalRecord = this.mapper.Map<PatientTestsAndDiagnosesViewModel>(patient);
+
+            return patientMedicalRecord;
+        }
+
         //public PatientProfileViewModel FindPatientByName(string name)
         //{
         //    var patient = this.db.Patients.FirstOrDefault(p => p.User.FirstName + " " + p.User.LastName == name);

@@ -79,7 +79,7 @@ namespace MedicalCenter.Controllers
             return this.RedirectToAction("Tests","Doctors");
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor,Patient")]
         public IActionResult SeeResults(string id)
         {
             var results = this.bloodTestsService.GetSingleResult(id);
