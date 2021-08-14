@@ -91,11 +91,13 @@ namespace MedicalCenter
                 app.UseHsts();
             }
 
-            RolesInitializer.RoleSeeder(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
+            app.SeedDatabase().Wait();
 
-            UsersInitializer.SeedUsers(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
+            //RolesInitializer.RoleSeeder(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
 
-            DoctorsInitializer.SeedDocs(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
+            //UsersInitializer.SeedUsers(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
+
+            //DoctorsInitializer.SeedDocs(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
