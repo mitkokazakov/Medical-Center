@@ -21,7 +21,21 @@ namespace MedicalCenter.Services.Services
             this.mapper = mapper;
         }
 
-        
+        public bool IsPatientProfileCompleted(string userId)
+        {
+            return this.db.Patients.Any(d => d.UserId == userId);
+        }
+
+        public bool IsPatientWithCertainEGNExist(string EGN)
+        {
+            if (this.db.Patients.Any(p => p.EGN == EGN))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task AddPatient(AddPatientFormModel patient,string userId)
         {
             if (this.db.Patients.Any(p => p.EGN == patient.EGN))

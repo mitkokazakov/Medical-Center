@@ -21,5 +21,7 @@ namespace MedicalCenter.Services.Services
         IEnumerable<ListAllDoctorsViewModel> GetAllDoctors();
 
         Task WriteDiagnose(string patientId, string doctorId, DiagnoseFormModel model);
+
+        SingleDoctorViewModel GetDoctorById(string doctorId);
     }
 }

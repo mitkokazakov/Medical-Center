@@ -44,6 +44,12 @@ namespace MedicalCenter.Mapping
                 .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))
                 .ForMember(x => x.IsImageApproved, y => y.MapFrom(x => x.Image.IsApproved));
 
+            this.CreateMap<Doctor, SingleDoctorViewModel>()
+                .ForMember(x => x.Id, y => y.MapFrom(x => x.UserId))
+                .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))
+                .ForMember(x => x.IsImageApproved, y => y.MapFrom(x => x.Image.IsApproved))
+                .ForMember(x => x.FullName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName));
+
             this.CreateMap<Doctor, ListAllDoctorsViewModel>()
                 .ForMember(x => x.Id, x => x.MapFrom(x => x.UserId))
                 .ForMember(x => x.ImagePath, y => y.MapFrom(x => x.ImageId + x.Image.Extension))

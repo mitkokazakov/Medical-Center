@@ -41,7 +41,8 @@ namespace MedicalCenter.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                TempData["Error"] = "Incorrect data format!";
+                return this.View();
             }
 
             await this.doctorService.AddDoctor(model, userId);
@@ -77,7 +78,8 @@ namespace MedicalCenter.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                TempData["Error"] = "Incorrect data format!";
+                return this.View();
             }
 
             await this.doctorService.ChangeDoctorInfo(id,model);
@@ -101,13 +103,6 @@ namespace MedicalCenter.Controllers
             return this.View();
         }
 
-        [Authorize(Roles = "Doctor")]
-        public IActionResult FindPatientByName()
-        {
-            return this.View();
-        }
-
-       
         [HttpPost]
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult PatientProfile(FindPatientEGNFormModel model)
@@ -141,6 +136,20 @@ namespace MedicalCenter.Controllers
             var allDoctors = this.doctorService.GetAllDoctors();
 
             return this.View(allDoctors);
+        }
+
+        public IActionResult ViewDoctor(string id)
+        {
+            var doctor = this.doctorService.GetDoctorById(id);
+
+            if (doctor == null)
+            {
+                TempData["Error"] = "Doctor with that id does not exist!!!";
+
+                return this.RedirectToAction("All","Doctors");
+            }
+
+            return this.View(doctor);
         }
 
         

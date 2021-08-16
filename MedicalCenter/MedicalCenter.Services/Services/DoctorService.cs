@@ -150,5 +150,14 @@ namespace MedicalCenter.Services.Services
             await this.db.MedicalExamination.AddAsync(medicalExamination);
             await this.db.SaveChangesAsync();
         }
+
+        public SingleDoctorViewModel GetDoctorById(string doctorId)
+        {
+            var doctor = this.db.Doctors.FirstOrDefault(d => d.UserId == doctorId);
+
+            var doctorsInfo = this.mapper.Map<SingleDoctorViewModel>(doctor);
+
+            return doctorsInfo;
+        }
     }
 }

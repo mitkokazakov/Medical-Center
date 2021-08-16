@@ -42,6 +42,12 @@ namespace MedicalCenter.Controllers
         {
             var allParameters = this.bloodTestsService.ListAllParameters();
 
+            if (Box.Count == 0)
+            {
+                TempData["Error"] = "Please select at least one parameter!";
+                return this.View(allParameters);
+            }
+
             this.ViewBag.UserId = id;
 
             var doctorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -74,6 +80,15 @@ namespace MedicalCenter.Controllers
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public async Task<IActionResult> FillTest(double[] parameter,string id)
         {
+            var allParams = this.bloodTestsService.AllParametersForSingleTest(id).ToList();
+
+            if (parameter.Length != allParams.Count)
+            {
+                TempData["Error"] = "Please fill all parameters!";
+
+                return this.Redirect($"/BloodTests/AllParameters/{id}");
+            }
+
             await this.bloodTestsService.FillBloodTest(parameter,id);
 
             return this.RedirectToAction("Tests","Doctors");

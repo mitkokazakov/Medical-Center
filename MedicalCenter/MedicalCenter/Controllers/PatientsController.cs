@@ -30,26 +30,25 @@ namespace MedicalCenter.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                TempData["Error"] = "Invalid format of data!!";
+                return this.View();
             }
 
-            try
-            {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                await this.patientService.AddPatient(model, userId);
-
-                var user = await this.userManager.GetUserAsync(this.User);
-
-                await this.userManager.AddToRoleAsync(user, "Patient");
-
-                return this.RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
+            if (this.patientService.IsPatientWithCertainEGNExist(model.EGN))
             {
                 TempData["Error"] = "Patient with that EGN already exist!!.";
                 return this.View();
+
             }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await this.patientService.AddPatient(model, userId);
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            await this.userManager.AddToRoleAsync(user, "Patient");
+
+            return this.RedirectToAction("ViewProfile", "Patients");
 
         }
 
@@ -69,7 +68,8 @@ namespace MedicalCenter.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                TempData["Error"] = "Invalid data format!!";
+                return this.View();
             }
 
             await this.patientService.ChangePatient(model, userId);

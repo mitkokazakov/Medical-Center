@@ -2,6 +2,7 @@
 @inject SignInManager<MedicalCenter.Data.Data.Models.ApplicationUser> SignInManager
 @inject UserManager<MedicalCenter.Data.Data.Models.ApplicationUser> UserManager
 @inject MedicalCenter.Services.Services.IDoctorService DoctorService
+@inject MedicalCenter.Services.Services.IPatientService PatientService
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -21,7 +22,8 @@
         }*@
 
 
-        @if (!this.User.IsInRole("Patient") && !this.User.IsInRole("Doctor") && !this.User.IsInRole("Admin") && !this.User.IsInRole("Laboratory Assistant"))
+        @if (!this.PatientService.IsPatientProfileCompleted(this.UserManager.GetUserId(this.User)) && 
+            !this.User.IsInRole("Doctor") && !this.User.IsInRole("Admin") && !this.User.IsInRole("Laboratory Assistant"))
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-controller="Patients" asp-action="Add">Complete Patient's Profile</a>

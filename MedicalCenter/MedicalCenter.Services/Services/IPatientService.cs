@@ -7,6 +7,9 @@ namespace MedicalCenter.Services.Services
 {
     public interface IPatientService
     {
+        bool IsPatientProfileCompleted(string userId);
+
+        bool IsPatientWithCertainEGNExist(string EGN);
         Task AddPatient(AddPatientFormModel patient, string userId);
 
         ChangePatientProfileViewModel ChangePatientInfo(string userId);

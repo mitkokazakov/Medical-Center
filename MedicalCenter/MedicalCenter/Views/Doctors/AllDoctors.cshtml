@@ -18,7 +18,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-center">@doc.FullName</h5>
                     <p class="card-text text-center">@doc.Specialty</p>
-                    <a asp-controller="Doctor" asp-action="ViewDoctor" asp-route-id="@doc.Id" class="btn btn-primary text-center">View</a>
+                    <a asp-controller="Doctors" asp-action="ViewDoctor" asp-route-id="@doc.Id" class="btn btn-primary text-center">View</a>
                     <a asp-controller="Schedule" asp-action="FreeHours" asp-route-id="@doc.Id" class="btn btn-primary text-center">Appointment</a>
                 </div>
             </div>

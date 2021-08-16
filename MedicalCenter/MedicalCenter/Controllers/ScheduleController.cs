@@ -66,6 +66,7 @@ namespace MedicalCenter.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                TempData["Error"] = "Incorrect data format!";
                 return this.View();
             }
 
