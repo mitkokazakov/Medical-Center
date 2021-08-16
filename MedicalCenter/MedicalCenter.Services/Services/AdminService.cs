@@ -3,9 +3,11 @@ using AutoMapper.QueryableExtensions;
 using MedicalCenter.Data;
 using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.ViewModels.Admin;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace MedicalCenter.Services.Services
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
         private readonly IMapper mapper;
+
         public AdminService(UserManager<ApplicationUser> userManager, ApplicationDbContext db, IMapper mapper)
         {
             this.userManager = userManager;
@@ -74,5 +77,7 @@ namespace MedicalCenter.Services.Services
 
             await this.db.SaveChangesAsync();
         }
+
+        
     }
 }

@@ -128,7 +128,7 @@ namespace MedicalCenter.Controllers
         [Authorize(Roles = "Laboratory Assistant")]
         public IActionResult Tests()
         {
-            return this.View();
+            return this.View("FindPatientByEGN");
         }
 
         public IActionResult AllDoctors()
@@ -151,9 +151,6 @@ namespace MedicalCenter.Controllers
 
             return this.View(doctor);
         }
-
-        
-
 
     }
 }
