@@ -53,6 +53,8 @@ namespace MedicalCenter
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddRazorPages();
+
             services.AddAutoMapper(typeof(MedicalCenterProfile).Assembly);
 
             services.AddTransient<IPatientService, PatientService>();
@@ -66,7 +68,7 @@ namespace MedicalCenter
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
-            //services.AddRazorPages();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

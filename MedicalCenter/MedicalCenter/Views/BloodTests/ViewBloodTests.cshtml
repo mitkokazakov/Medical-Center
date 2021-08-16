@@ -3,7 +3,11 @@
 <div class="d-flex">
 
     <partial name="_SideNavBarDoctors" />
-
+    
+    @if (!this.Model.Any())
+    {
+        <h4>There is no tests!</h4>
+    }
     <table class="table table-info table-hover table-striped table-bordered text-center">
 
         <tr>

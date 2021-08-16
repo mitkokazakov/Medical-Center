@@ -2,6 +2,11 @@
 
 <div class="row offset-md-3">
 
+    @if (!this.Model.Any())
+    {
+        <h4>There is no schedules for this doctor!</h4>
+    }
+
     @foreach (var day in this.Model)
     {
     <div class="col-md-2  border-right">

@@ -111,23 +111,7 @@ namespace MedicalCenter.Services.Services
 
         }
 
-        //private void ChangePicture(ChangeDoctorInfoFormModel model, string pictureName)
-        //{
-        //    string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
-
-        //    string extension = Path.GetExtension(model.Image.FileName);
-
-        //    string pictureFileName = pictureName + extension;
-
-        //    string filePath = Path.Combine(uploadsFolder, pictureFileName);
-
-        //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //    {
-        //        model.Image.CopyTo(fileStream);
-        //    }
-
-        //}
-
+        
         public IEnumerable<ListAllDoctorsViewModel> GetAllDoctors()
         {
             var allDoctors = this.db.Doctors.ProjectTo<ListAllDoctorsViewModel>(this.mapper.ConfigurationProvider).ToList();

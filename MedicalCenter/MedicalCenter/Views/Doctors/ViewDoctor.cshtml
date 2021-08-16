@@ -17,9 +17,10 @@
                 <div class="card-body">
                     <h5 class="card-title">@this.Model.FullName - @this.Model.Specialty</h5>
                     <p class="card-text">@this.Model.Biography</p>
-                    <a href="/Schedule/MakeAppointment" class="btn btn-primary stretched-link">Make appointment</a>
-                    <a href="/Schedule/FreeHours/@this.Model.Id" class="btn btn-primary stretched-link">All Doctors</a>
+
                 </div>
+                
+                <a href="/Schedule/FreeHours/@this.Model.Id" class="btn btn-primary stretched-link ml-4">Make appointment</a>
             </div>
         </div>
     </div>

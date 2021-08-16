@@ -4,6 +4,11 @@
 
     <partial name="_SideNavBarDoctors" />
 
+    @if (!this.Model.Any())
+    {
+        <h4>There are no results</h4>
+    }
+
     <table class="table table-info table-hover table-striped table-bordered text-center">
 
         <tr>

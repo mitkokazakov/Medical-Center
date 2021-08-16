@@ -5,6 +5,12 @@
         <partial name="_SideNavBarDoctors" />
 
         <div class="row offset-md-1">
+
+            @if (!this.Model.Any())
+            { 
+                <h4>There is no shedules</h4>
+            }
+
             @foreach (var day in this.Model)
             {
             <div class="col-md-3">
