@@ -85,11 +85,7 @@ namespace MedicalCenter.Tests.Controllers
                 .Data(data => data
                     .WithSet<Patient>(patients => patients
                         .Any(p =>
-                            p.Country == country &&
-                            p.Town == town &&
-                            p.Address == address &&
-                            p.EGN == egn &&
-                            p.UserId == TestUser.Identifier)))
+                            p.EGN == egn )))
                 .AndAlso()
                 .ShouldReturn()
                 .Redirect(redirect => redirect

@@ -1,4 +1,6 @@
 ﻿using MedicalCenter.Controllers;
+using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.ViewModels.Diagnoses;
 using MyTested.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,5 +28,30 @@ namespace MedicalCenter.Tests.Controllers
                .Configuration()
                .ShouldMap("/Diagnoses/WriteDiagnose/dd")
                .To<DiagnosesController>(c => c.WriteDiagnose("dd"));
+
+        [Theory]
+        [InlineData("Pneumonia")]
+        public void PostWriteDiagnoseShouldBeOnlyForPatientsAndRedirectWithValidModel(string diagnose)
+            => MyController<DiagnosesController>
+                .Instance(controller => controller
+                    .WithUser())
+                .Calling(c => c.WriteDiagnose("dd", new DiagnoseFormModel
+                {
+                    Diagnose = diagnose
+
+                }))
+                .ShouldHave()
+                .ActionAttributes(attributes => attributes
+                    .RestrictingForHttpMethod(HttpMethod.Post)
+                    .RestrictingForAuthorizedRequests("Doctor"))
+                .ValidModelState()
+                .Data(data => data
+                    .WithSet<MedicalExamination>(me => me
+                        .Any(d =>
+                            d.Diagnose == diagnose)))
+                .AndAlso()
+                .ShouldReturn()
+                .Redirect(redirect => redirect
+                    .To<DoctorsController>(c => c.Manage()));
     }
 }
