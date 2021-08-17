@@ -33,7 +33,6 @@ namespace MedicalCenter.Tests.Controllers
                .To<PatientsController>(c => c.Add());
 
 
-
         [Fact]
         public void PostAddPatientShouldBeMapped()
             => MyRouting
@@ -95,5 +94,6 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .Redirect(redirect => redirect
                     .To<PatientsController>(c => c.ViewProfile()));
+
     }
 }

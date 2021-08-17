@@ -26,14 +26,12 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .View();
 
-
         [Fact]
         public void GetMakeScheduleShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap("/Schedule/MakeSchedule")
                 .To<ScheduleController>(c => c.MakeSchedule());
-
 
         [Fact]
         public void PostMakeScheduleShouldBeMapped()
@@ -130,12 +128,14 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .View();
 
+
         [Fact]
         public void GetSavedHourShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap("/Schedule/SavedHour/1")
                 .To<ScheduleController>(c => c.SavedHour(1));
+
 
         [Theory]
         [InlineData("Nothing",1)]
