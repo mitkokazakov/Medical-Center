@@ -26,12 +26,14 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .View();
 
+
         [Fact]
         public void GetMakeScheduleShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap("/Schedule/MakeSchedule")
                 .To<ScheduleController>(c => c.MakeSchedule());
+
 
         [Fact]
         public void PostMakeScheduleShouldBeMapped()

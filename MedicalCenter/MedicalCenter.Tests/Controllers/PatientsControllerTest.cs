@@ -24,12 +24,14 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .View();
 
+
         [Fact]
         public void GetAddPatientShouldBeMapped()
            => MyRouting
                .Configuration()
                .ShouldMap("/Patients/Add")
                .To<PatientsController>(c => c.Add());
+
 
 
         [Fact]
@@ -39,6 +41,7 @@ namespace MedicalCenter.Tests.Controllers
                                        .WithPath("/Patients/Add")
                                        .WithMethod(HttpMethod.Post))
                 .To<PatientsController>(c => c.Add(With.Any<AddPatientFormModel>()));
+
 
         [Fact]
         public void GetViewRecordShouldReturnViewOnlyForSignedInUsers()
@@ -50,6 +53,7 @@ namespace MedicalCenter.Tests.Controllers
                 .AndAlso()
                 .ShouldReturn()
                 .View();
+
 
         [Fact]
         public void GetViewRecordShouldBeMapped()
