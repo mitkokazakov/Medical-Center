@@ -17,6 +17,13 @@ namespace MedicalCenter.Tests.Controllers
                 .View();
 
         [Fact]
+        public void ErrorShouldBeMapped()
+            => MyRouting
+                .Configuration()
+                .ShouldMap("/Home/Error")
+                .To<HomeController>(c => c.Error());
+
+        [Fact]
         public void IndexActionShouldReturnView()
             => MyController<HomeController>
                 .Instance()
@@ -25,20 +32,10 @@ namespace MedicalCenter.Tests.Controllers
                 .View();
 
         [Fact]
-        public void IndexTest()
-        {
-            //Arrange
-
-            var homeController = new HomeController();
-
-            //Act
-
-            var result = homeController.Index();
-
-            //Assert
-
-            Assert.NotNull(result);
-            Assert.IsType<ViewResult>(result);
-        }
+        public void IndexShouldBeMapped()
+            => MyRouting
+                .Configuration()
+                .ShouldMap("/")
+                .To<HomeController>(c => c.Index());
     }
 }
