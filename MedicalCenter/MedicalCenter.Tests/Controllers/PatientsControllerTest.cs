@@ -19,7 +19,7 @@ namespace MedicalCenter.Tests.Controllers
                 .Instance()
                 .Calling(c => c.Add())
                 .ShouldHave()
-                .ActionAttributes(a => a.RestrictingForAuthorizedRequests("Patient"))
+                .ActionAttributes(a => a.RestrictingForAuthorizedRequests())
                 .AndAlso()
                 .ShouldReturn()
                 .View();
