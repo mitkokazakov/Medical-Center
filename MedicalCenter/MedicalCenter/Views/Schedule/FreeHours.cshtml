@@ -4,7 +4,7 @@
 
     @if (!this.Model.Any())
     {
-        <h4>There is no schedules for this doctor!</h4>
+        <h4 class="offset-md-0 display-4 text-danger">There are no schedules for this doctor!</h4>
     }
 
     @foreach (var day in this.Model)

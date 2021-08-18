@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<ListAllParametersViewModel>
 
-<div class="d-flex">
+<div class="row">
 
     <partial name="_SideNavBarDoctors" />
 
-    <div class="row">
-        <div class="col-md-10">
+    <div class="col-md-4 offset-md-3">
+        <div >
             <form class="mx-auto half-width " asp-controller="BloodTests" asp-action="FillTest" asp-route-id="@ViewBag.TestId" method="post">
                 <div class="form-group">
                     @foreach (var parameter in this.Model)

@@ -78,7 +78,13 @@ namespace MedicalCenter
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.Migrate();
+
+                if (env.IsDevelopment())
+                {
+                    dbContext.Database.Migrate();
+                }
+
+                app.SeedDatabase().Wait();
             }
 
             if (env.IsDevelopment())
@@ -93,7 +99,7 @@ namespace MedicalCenter
                 app.UseHsts();
             }
 
-            app.SeedDatabase().Wait();
+            //app.SeedDatabase().Wait();
 
             //RolesInitializer.RoleSeeder(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider).Wait();
 

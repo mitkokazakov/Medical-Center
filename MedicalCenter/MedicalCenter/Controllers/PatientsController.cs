@@ -20,14 +20,14 @@ namespace MedicalCenter.Controllers
             this.userManager = userManager;
         }
 
-        [Authorize(Roles = "Patient")]
+        [Authorize]
         public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles ="Patient")]
+        [Authorize]
         public async Task<IActionResult> Add(AddPatientFormModel model)
         {
             if (!this.ModelState.IsValid)
