@@ -31,7 +31,7 @@ SoftUni project based on ASP.NET Core
 
 ## :hammer_and_pick: Built With
    - ASP.NET Core 5.0
-   - Entity Framework (EF) Core 3.1
+   - Entity Framework (EF) Core 5
    - Microsoft SQL Server Express
    - ASP.NET Identity System
    - MVC Areas with Multiple Layouts
@@ -49,10 +49,11 @@ SoftUni project based on ASP.NET Core
 
 would happen once you run the application, including Test Accounts:
 
-•	Admin: mitko@tpp2.com / password: Jameson92@
-•	Doctor1: mitko1@abv.bg / password: Jameson92@
-•	Doctor2: mitko2@abv.bg / password: Jameson92@
-•	Doctor3: mitko3@abv.bg / password: Jameson92@
-•	Doctor4: mitko4@abv.bg / password: Jameson92@
-•	Laboratory Assistant: mitko5@abv.bg / password: Jameson92@
+   -	Admin: mitko@tpp2.com / password: Jameson92@
+   -	Doctor1: mitko1@abv.bg / password: Jameson92@
+   -	Doctor2: mitko2@abv.bg / password: Jameson92@
+   -	Doctor3: mitko3@abv.bg / password: Jameson92@
+   -	Doctor4: mitko4@abv.bg / password: Jameson92@
+   -	Laboratory Assistant: mitko5@abv.bg / password: Jameson92@
 
+Also all parameters for blood tests are included in seed.
