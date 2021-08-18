@@ -103,7 +103,7 @@ namespace MedicalCenter.Controllers
             return this.View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         [Authorize(Roles = "Doctor, Laboratory Assistant")]
         public IActionResult PatientProfile(FindPatientEGNFormModel model)
         {

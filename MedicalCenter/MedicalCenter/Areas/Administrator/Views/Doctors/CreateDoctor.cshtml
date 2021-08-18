@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Create Doctor";
 }
-<div class="d-flex">
+<div class="row">
 
     <partial name="_SideBarNavigation" />
 
-    <div class="row">
+    <div class="col-md-9">
         <div class="col-sm-12 offset-lg-2 col-md-8 offset-xl-3 col-xl-6">
             <h2 class="heading-margin text-center">@ViewBag.Title</h2>
 
-            <form class="mx-auto half-width" asp-controller="Admin" asp-action="CreateDoctor" method="post">
+            <form class="mx-auto half-width" asp-area="Administrator" asp-controller="Doctors" asp-action="CreateDoctor" method="post">
 
 
                 <div class="form-group">

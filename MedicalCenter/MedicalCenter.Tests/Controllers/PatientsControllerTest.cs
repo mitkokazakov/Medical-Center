@@ -67,7 +67,7 @@ namespace MedicalCenter.Tests.Controllers
         public void PostAddPatientShouldBeOnlyForPatientsAndRedirectWithValidModel(string country, string town, string address, string egn, string date)
             => MyController<PatientsController>
                 .Instance(controller => controller
-                    .WithUser()
+                    .WithUser())
                 .Calling(c => c.Add(new AddPatientFormModel
                 {
                     Country = country,

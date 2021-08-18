@@ -3,7 +3,7 @@
 <div class="row">
     <partial name="_SideNavBarDoctors" />
 
-    <form class="form-check col-md-6 offset-md-2" method="post" asp-controller="Doctors" asp-action="PatientProfile">
+    <form class="form-check col-md-6 offset-md-2" method="get" asp-controller="Doctors" asp-action="PatientProfile">
         <h2 class="heading-margin text-center">Find Patient By EGN</h2>
         <div class="form-group">
             <label asp-for="EGN"></label>

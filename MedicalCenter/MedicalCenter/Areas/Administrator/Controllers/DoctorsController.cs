@@ -24,12 +24,13 @@ namespace MedicalCenter.Areas.Administrator.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                TempData["Error"] = "Not valid format of data!";
+                return this.View();
             }
 
             await this.adminService.CreateDoctor(model);
 
-            return this.RedirectToAction("Overview");
+            return this.RedirectToAction("Overview","Administrator");
         }
     }
 }

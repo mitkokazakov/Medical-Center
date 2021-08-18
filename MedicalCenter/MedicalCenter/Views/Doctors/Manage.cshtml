@@ -1,10 +1,12 @@
 ﻿@model ICollection<ListAllSchedulesViewModel>
-    
-    <div class="d-flex">
+
+<link rel="stylesheet" href="~/css/customcss.css"/>    
+
+    <div class="row" id="manage-div">
 
         <partial name="_SideNavBarDoctors" />
 
-        <div class="row offset-md-1">
+        <div class="row" id="inner-manage-div">
 
             @if (!this.Model.Any())
             { 
@@ -13,7 +15,7 @@
 
             @foreach (var day in this.Model)
             {
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="d-flex flex-column">
                     <h6>@day.NameOfDay</h6>
 

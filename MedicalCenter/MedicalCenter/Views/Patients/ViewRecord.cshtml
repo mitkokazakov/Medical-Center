@@ -45,11 +45,23 @@
                     }
                     else
                     {
-                        @foreach (var medExam in this.Model.AllMedicalExaminations)
-                        {
-                            <p class="text-white">@medExam.Date  -  @medExam.Diagnose</p>
-                            <br />
-                        }
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <th>Date</th>
+                                <th>Conclusion</th>
+                            </tr>
+
+                            @foreach (var medExam in this.Model.AllMedicalExaminations)
+                            {
+                                <tr>
+                                    <td>@medExam.Date</td>
+                                    <td>@medExam.Diagnose</td>
+                                </tr>
+
+                            }
+
+                        </table>
+
                     }
 
                 </div>
