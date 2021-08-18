@@ -63,11 +63,11 @@ namespace MedicalCenter.Tests.Controllers
 
 
         [Theory]
-        [InlineData("Bulgaria","PLovdiv","Marasha","9211067524","11/06/1992")]
-        public void PostAddPatientShouldBeOnlyForPatientsAndRedirectWithValidModel(string country, string town, string address, string egn,string date)
+        [InlineData("Bulgaria", "PLovdiv", "Marasha", "9211067524", "11/06/1992")]
+        public void PostAddPatientShouldBeOnlyForPatientsAndRedirectWithValidModel(string country, string town, string address, string egn, string date)
             => MyController<PatientsController>
                 .Instance(controller => controller
-                    .WithUser())
+                    .WithUser()
                 .Calling(c => c.Add(new AddPatientFormModel
                 {
                     Country = country,
@@ -75,7 +75,7 @@ namespace MedicalCenter.Tests.Controllers
                     Address = address,
                     EGN = egn,
                     DateOfBirth = DateTime.Parse(date),
-                    
+
                 }))
                 .ShouldHave()
                 .ActionAttributes(attributes => attributes
@@ -85,7 +85,7 @@ namespace MedicalCenter.Tests.Controllers
                 .Data(data => data
                     .WithSet<Patient>(patients => patients
                         .Any(p =>
-                            p.EGN == egn )))
+                            p.EGN == egn)))
                 .AndAlso()
                 .ShouldReturn()
                 .Redirect(redirect => redirect
