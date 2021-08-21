@@ -7,17 +7,54 @@
     <title>@ViewData["Title"] Zara Medical Center</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/site.css"/>
+    @*<link rel="stylesheet" href="~/css/style.css"/>*@
+
 
 </head>
 <body class="bg-light">
 
+    @*<section class="header-uper">
+        <div class="container clearfix d-flex">
+            <div class="logo col-3 mr-5">
+                <figure>
+                    <a href="#">
+                        <img src="/images/logo.png" alt="" width="130">
+                    </a>
+                </figure>
+            </div>
+            <div class="right-side float-left">
+                <ul class="contact-info d-flex ">
+                    <li class="item d-flex mr-5">
+                        <div class="icon-box">
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                        <strong>Email</strong>
+                        <br>
+                        <a href="#">
+                            <span>info@medic.com</span>
+                        </a>
+                    </li>
+                    <li class="item d-flex">
+                        <div class="icon-box">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <strong>Call Now</strong>
+                        <br>
+                        <span>+ (88017) - 123 - 4567</span>
+                    </li>
+                </ul>
 
-    <header id="topheader" style="background-color: #48BDC5;">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="topheader">
+            </div>
+        </div>
+    </section>*@
+
+
+    <header id="topheader" class="text-white">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3" id="topheader">
             <div class="container">
 
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Zara Medical Center</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Zara Medical Center</a>
+                <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +66,7 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Doctors" asp-action="ViewProfile">Doctor's Profile</a>
                             </li>
                         }
 
@@ -37,11 +74,11 @@
                         {
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="ViewProfile">Patient's Profile</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="ViewProfile">Patient's Profile</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="ViewRecord">Medical Record</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="ViewRecord">Medical Record</a>
                             </li>
                         }
 
@@ -49,7 +86,7 @@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Administrator" asp-action="Overview">Admin Panel</a>
+                                <a class="nav-link text-white" asp-area="Administrator" asp-controller="Administrator" asp-action="Overview">Admin Panel</a>
                             </li>
                         }
                         @if (this.User.IsInRole("Doctor"))
@@ -68,7 +105,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="AllDoctors">All Doctors</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Doctors" asp-action="AllDoctors">All Doctors</a>
                         </li>
 
                     </ul>
