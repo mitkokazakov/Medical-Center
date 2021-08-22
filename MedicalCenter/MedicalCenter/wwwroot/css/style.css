@@ -1651,7 +1651,9 @@ li {
 }
 
 .team-section .team-member img {
-  width: 100%;
+    
+    width:100%;
+  
 }
 
 .team-section .team-member .contents {

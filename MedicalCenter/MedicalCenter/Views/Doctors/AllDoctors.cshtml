@@ -1,29 +1,72 @@
 ﻿@model IEnumerable<ListAllDoctorsViewModel>
+@*<div class="row offset-md-1">
 
-<div class="row offset-md-1">
+        @foreach (var doc in this.Model)
+        {
+            <div class="col-md-3 m-4">
+                <div class="card" style="width: 18rem;">
+                    @if (String.IsNullOrEmpty(doc.ImagePath) || doc.IsImageApproved == false)
+                    {
+                        <img class="card-img-top" src="~/images/unknowndoctor.jpg" alt="Card image cap" style="width: 286px; height: 286px">
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="~/images/@doc.ImagePath" alt="Card image cap" style="width: 286px; height: 286px">
+                    }
 
-    @foreach (var doc in this.Model)
-    {
-        <div class="col-md-3 m-4">
-            <div class="card" style="width: 18rem;">
-                @if (String.IsNullOrEmpty(doc.ImagePath) || doc.IsImageApproved == false)
-                {
-                    <img class="card-img-top" src="~/images/unknowndoctor.jpg" alt="Card image cap" style="width: 286px; height: 286px">
-                }
-                else
-                {
-                    <img class="card-img-top" src="~/images/@doc.ImagePath" alt="Card image cap" style="width: 286px; height: 286px">
-                }
-
-                <div class="card-body text-center">
-                    <h5 class="card-title text-center">@doc.FullName</h5>
-                    <p class="card-text text-center">@doc.Specialty</p>
-                    <a asp-controller="Doctors" asp-action="ViewDoctor" asp-route-id="@doc.Id" class="btn btn-primary text-center">View</a>
-                    <a asp-controller="Schedule" asp-action="FreeHours" asp-route-id="@doc.Id" class="btn btn-primary text-center">Appointment</a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-center">@doc.FullName</h5>
+                        <p class="card-text text-center">@doc.Specialty</p>
+                        <a asp-controller="Doctors" asp-action="ViewDoctor" asp-route-id="@doc.Id" class="btn btn-primary text-center">View</a>
+                        <a asp-controller="Schedule" asp-action="FreeHours" asp-route-id="@doc.Id" class="btn btn-primary text-center">Appointment</a>
+                    </div>
                 </div>
             </div>
+
+        }
+
+    </div>*@
+
+<!--team section-->
+<section class="team-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3>
+                Our Expert
+                <span>Doctors</span>
+            </h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem illo, rerum
+                <br>natus nobis deleniti doloremque minima odit voluptatibus ipsam animi?
+            </p>
         </div>
+        <div class="row">
+            @foreach (var doc in this.Model)
+            {
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="team-member">
+                    @if (String.IsNullOrEmpty(doc.ImagePath) || doc.IsImageApproved == false)
+                    {
+                        <img src="/images/unknowndoctor.jpg" alt="doctor" class="img-responsive">
+                    }
+                    else
+                    {
+                        <img src="~/images/@doc.ImagePath" alt="doctor" class="img-responsive">
+                    }
 
-    }
-
-</div>
+                    <div class="contents text-center">
+                        <h4>@doc.FullName</h4>
+                        <p class="text-info">@doc.Specialty</p>
+                        <a asp-controller="Doctors" asp-action="ViewDoctor" asp-route-id="@doc.Id" class="btn btn-main">View</a>
+                        <a asp-controller="Schedule" asp-action="FreeHours" asp-route-id="@doc.Id" class="btn btn-main">Make Appointment</a>
+                    </div>
+                </div>
+            </div>
+            }
+            
+            
+            
+        </div>
+    </div>
+</section>
+<!--End team section-->
