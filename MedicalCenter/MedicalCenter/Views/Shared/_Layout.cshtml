@@ -7,24 +7,25 @@
     <title>@ViewData["Title"] Zara Medical Center</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/site.css"/>
-    @*<link rel="stylesheet" href="~/css/style.css"/>*@
+    <link rel="stylesheet" href="~/css/style.css"/>
 
 
 </head>
 <body class="bg-light">
 
-    @*<section class="header-uper">
-        <div class="container clearfix d-flex">
-            <div class="logo col-3 mr-5">
+    <!--Header Upper-->
+    <section class="header-uper">
+        <div class="container clearfix">
+            <div class="logo">
                 <figure>
-                    <a href="#">
+                    <a href="index.html">
                         <img src="/images/logo.png" alt="" width="130">
                     </a>
                 </figure>
             </div>
-            <div class="right-side float-left">
-                <ul class="contact-info d-flex ">
-                    <li class="item d-flex mr-5">
+            <div class="right-side">
+                <ul class="contact-info">
+                    <li class="item">
                         <div class="icon-box">
                             <i class="fa fa-envelope-o"></i>
                         </div>
@@ -34,7 +35,7 @@
                             <span>info@medic.com</span>
                         </a>
                     </li>
-                    <li class="item d-flex">
+                    <li class="item">
                         <div class="icon-box">
                             <i class="fa fa-phone"></i>
                         </div>
@@ -46,7 +47,8 @@
 
             </div>
         </div>
-    </section>*@
+    </section>
+    <!--Header Upper-->
 
 
     <header id="topheader" class="text-white">
@@ -92,7 +94,7 @@
                         @if (this.User.IsInRole("Doctor"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="Manage">Manage</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Doctors" asp-action="Manage">Manage</a>
                             </li>
                         }
                         @if (this.User.IsInRole("Laboratory Assistant"))
