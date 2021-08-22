@@ -1,17 +1,19 @@
 ﻿@model PatientProfileViewModel
 
+<link rel="stylesheet" href="~/css/customcss.css"/>
+
 <div class="row d-flex justify-content-between ">
 
     <partial name="_SideNavBarDoctors" />
 
-    <div class="card text-center bg-info text-white ">
+    <div class="card text-center text-white patient-card">
         <div class="card-header">
             Patient's EGN - @this.Model.EGN
         </div>
         <div class="card-body">
-            <h5 class="card-title">@this.Model.FullName</h5>
-            <p class="card-text">Country - @this.Model.Country</p>
-            <p class="card-text">Address - @this.Model.Town, @this.Model.Address</p>
+            <h5 class="card-title text-white">@this.Model.FullName</h5>
+            <p class="card-text text-white">Country - @this.Model.Country</p>
+            <p class="card-text text-white">Address - @this.Model.Town, @this.Model.Address</p>
             @if (this.User.IsInRole("Doctor"))
             {
                 <a asp-controller="BloodTests" asp-action="ViewBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light">View Tests</a>
@@ -22,7 +24,7 @@
 
             @if (this.User.IsInRole("Laboratory Assistant"))
             {
-                <a asp-controller="BloodTests" asp-action="AllBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light">Fill Tests</a>
+                <a asp-controller="BloodTests" asp-action="AllBloodTests" asp-route-id="@this.Model.Id" class="btn btn-light btn-style-one">Fill Tests</a>
             }
 
         </div>

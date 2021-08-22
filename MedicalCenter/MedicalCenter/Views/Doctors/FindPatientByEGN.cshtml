@@ -3,7 +3,7 @@
 <div class="row">
     <partial name="_SideNavBarDoctors" />
 
-    <form class="form-check col-md-6 offset-md-2" method="get" asp-controller="Doctors" asp-action="PatientProfile">
+    <form class="form-check col-md-5 offset-md-2 offet-sm-1 col-sm-12" method="get" asp-controller="Doctors" asp-action="PatientProfile">
         <h2 class="heading-margin text-center">Find Patient By EGN</h2>
         <div class="form-group">
             <label asp-for="EGN"></label>
@@ -11,7 +11,11 @@
             <span asp-validation-for="EGN" class="small text-danger"></span>
         </div>
 
-        <input class="btn btn-success mt-3 text-center" type="submit" value="Find" />
+        
+        <div class="d-flex justify-content-center">
+            <input class="btn btn-style-one mt-3 text-center" type="submit" value="Find" />
+        </div>
+
     </form>
     
     

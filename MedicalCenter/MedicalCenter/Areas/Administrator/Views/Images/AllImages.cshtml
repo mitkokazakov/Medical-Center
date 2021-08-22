@@ -1,11 +1,14 @@
 ﻿@model ICollection<MedicalCenter.Services.ViewModels.Admin.AllImagesToApproveViewModel>
 
-<h1 class="text-center">All images to approve</h1>
+<link rel="stylesheet" href="~/css/customcss.css"/>
 
 <div class="row">
+
     <partial name="_SideBarNavigation" />
 
-    <table class="col-sm-8 offset-md-1 table table-success table-hover table-striped table-bordered table-responsive-sm  text-center">
+    <h1 class="text-center offset-md-3">All images to approve</h1>
+
+    <table class="col-sm-8 offset-md-3 table table-success table-hover table-striped table-bordered table-responsive-sm  text-center images-table">
 
         <tr>
             <th>Image</th>

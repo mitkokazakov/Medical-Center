@@ -3,6 +3,7 @@
     ViewBag.Title = "Change Profile";
 }
 
+<link  rel="stylesheet" href="~/css/customcss.css"/>
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
@@ -17,12 +18,14 @@
 
             <div class="form-group">
                 <label>Image</label>
-                <input class="form-control" type="file" name="Image" required>
+                <input class="form-control" type="file" name="Image" required id="file-upload">
                 <span asp-validation-for="ImagePath" class="small text-danger"></span>
             </div>
 
-
-            <input class="btn btn-warning mt-3 text-center" type="submit" value="Change" />
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-warning mt-3 text-center" type="submit" value="Change" />
+            </div>
+            
 
         </form>
 
