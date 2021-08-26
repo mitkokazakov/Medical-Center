@@ -23,7 +23,9 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-
+.view-more-doc {
+    margin:auto !important;
+}
 
 /* Provide sufficient contrast against white background */
 a {

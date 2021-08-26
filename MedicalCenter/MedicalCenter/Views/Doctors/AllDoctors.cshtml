@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ListAllDoctorsViewModel>
+
 @*<div class="row offset-md-1">
 
         @foreach (var doc in this.Model)
@@ -28,7 +29,7 @@
     </div>*@
 
 <!--team section-->
-<section class="team-section section">
+<section class="team-section section text-center">
     <div class="container">
         <div class="section-title text-center">
             <h3>
@@ -43,7 +44,7 @@
         <div class="row">
             @foreach (var doc in this.Model)
             {
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12 single-doc" style="display:none">
                 <div class="team-member">
                     @if (String.IsNullOrEmpty(doc.ImagePath) || doc.IsImageApproved == false)
                     {
@@ -68,5 +69,17 @@
             
         </div>
     </div>
+    <button class="btn btn-style-one view-more-doc mt-5">View More</button>
 </section>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    $(".single-doc").slice(0, 3).show();
+    $(".view-more-doc").on("click", function () {
+        $(".single-doc:hidden").slice(0, 3).slideDown()
+    })
+</script>
 <!--End team section-->
