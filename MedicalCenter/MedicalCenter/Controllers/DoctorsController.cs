@@ -146,10 +146,24 @@ namespace MedicalCenter.Controllers
             {
                 TempData["Error"] = "Doctor with that id does not exist!!!";
 
-                return this.RedirectToAction("All","Doctors");
+                return this.RedirectToAction("AllDoctors", "Doctors");
             }
 
             return this.View(doctor);
+        }
+
+        public IActionResult SearchByName(SearchDoctorFormModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                TempData["Error"] = "There aren't doctors with the given name!!!";
+
+                return this.RedirectToAction("AllDoctors", "Doctors");
+            }
+
+            var docs = this.doctorService.AllMatchedDoctors(model.DoctorName);
+
+            return this.View("AllDoctors",docs);
         }
 
     }

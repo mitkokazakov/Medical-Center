@@ -23,5 +23,7 @@ namespace MedicalCenter.Services.Services
         Task WriteDiagnose(string patientId, string doctorId, DiagnoseFormModel model);
 
         SingleDoctorViewModel GetDoctorById(string doctorId);
+
+        IEnumerable<ListAllDoctorsViewModel> AllMatchedDoctors(string fullName);
     }
 }

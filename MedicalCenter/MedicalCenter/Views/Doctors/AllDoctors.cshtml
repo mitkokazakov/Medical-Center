@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ListAllDoctorsViewModel>
 
+<link rel="stylesheet" href="~/css/customcss.css"/>
+
 @*<div class="row offset-md-1">
 
         @foreach (var doc in this.Model)
@@ -31,7 +33,7 @@
 <!--team section-->
 <section class="team-section section text-center">
     <div class="container">
-        <div class="section-title text-center">
+        <div class="section-title text-center mb-5">
             <h3>
                 Our Expert
                 <span>Doctors</span>
@@ -40,6 +42,22 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem illo, rerum
                 <br>natus nobis deleniti doloremque minima odit voluptatibus ipsam animi?
             </p>
+
+            <button class="btn btn-style-one view-more-doc mt-5 search-btn">Search</button>
+
+            <form class="form-check col-md-6 offset-md-3 offet-sm-1 col-sm-12 mt-5 search-doc-form" method="get" asp-controller="Doctors" asp-action="SearchByName">
+                <h2 class="heading-margin text-center mb-3">Search Doctor By Name</h2>
+                <div class="form-group">
+                    <input  name="doctorName" class="form-control" placeholder="Michael James e.g.">
+                    
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-style-one mt-3 text-center" type="submit" value="Find" />
+                </div>
+
+            </form>
         </div>
         <div class="row">
             @foreach (var doc in this.Model)
@@ -77,9 +95,13 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
 <script>
+
     $(".single-doc").slice(0, 3).show();
     $(".view-more-doc").on("click", function () {
         $(".single-doc:hidden").slice(0, 3).slideDown()
     })
+
+    $(".search-btn").on("click", function () {
+           $(".search-doc-form").toggle()
+    })
 </script>
-<!--End team section-->

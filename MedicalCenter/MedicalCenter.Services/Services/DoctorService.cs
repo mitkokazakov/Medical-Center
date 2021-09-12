@@ -143,5 +143,12 @@ namespace MedicalCenter.Services.Services
 
             return doctorsInfo;
         }
+
+        public IEnumerable<ListAllDoctorsViewModel> AllMatchedDoctors(string fullName)
+        {
+            var allMatchedDocs = this.db.Doctors.Where(d => d.User.FirstName.Contains(fullName) || d.User.LastName.Contains(fullName)).ProjectTo<ListAllDoctorsViewModel>(this.mapper.ConfigurationProvider).ToList();
+
+            return allMatchedDocs;
+        }
     }
 }

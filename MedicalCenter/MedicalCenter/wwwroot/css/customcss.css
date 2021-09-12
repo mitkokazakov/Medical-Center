@@ -59,3 +59,7 @@
 .doctor-nav a:hover {
         color: black !important;
     }
+
+.search-doc-form {
+    display: none;
+}
