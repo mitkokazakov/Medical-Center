@@ -141,7 +141,7 @@ li {
   font-size: 14px;
   font-weight: 600;
   color: #ffffff;
-  line-height: 27px;
+  line-height: 20px;
   padding: 8px 36px;
   background: #48bdc5;
   border: 1px solid #48bdc5;
@@ -194,6 +194,35 @@ li {
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
 }
+
+.doctors-button {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 20px;
+    padding: 8px 36px;
+    background: #48bdc5;
+    border: 1px solid #48bdc5;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: "Source Sans Pro", sans-serif;
+    transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+.doctors-button:hover {
+        color: #48bdc5;
+        border: 1px solid #48bdc5;
+        background: #ffffff;
+        transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -webkit-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+    }
 
 .section {
   padding: 100px 0;
@@ -3149,6 +3178,18 @@ li {
   color: #7b64cb;
   border-color: #7b64cb;
   transition: all 500ms ease;
+}
+
+#forgot-password {
+    color: #48bdc5 !important;
+}
+
+#new-user {
+    color: #48bdc5 !important;
+}
+
+#resend-confirmation {
+    color: #48bdc5 !important;
 }
 
 /*  Theme HTML Template */

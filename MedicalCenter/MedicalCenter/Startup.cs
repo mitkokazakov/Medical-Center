@@ -81,6 +81,7 @@ namespace MedicalCenter
 
                 if (env.IsDevelopment())
                 {
+                    //dbContext.Database.EnsureCreated();
                     dbContext.Database.Migrate();
                 }
 

@@ -63,10 +63,12 @@ namespace MedicalCenter.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
+            [Display(Name = "First Name")]
             [MinLength(2)]
             public string FirstName { get; set; }
 
             [Required]
+            [Display(Name = "Last Name")]
             [MinLength(2)]
             public string LastName { get; set; }
         }
