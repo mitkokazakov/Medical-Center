@@ -8,11 +8,11 @@
 
     <div class="col-md-8" >
 
-        <form class="form-check col-md-6" method="post" asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.ViewBag.UserId">
-            <h2 class="heading-margin text-center">All parameters</h2>
+        <form class="form-check col-md-6 text-center" method="post" asp-controller="BloodTests" asp-action="SendBloodTests" asp-route-id="@this.ViewBag.UserId">
+            <h2 class="heading-margin text-center mb-3">All parameters</h2>
             @foreach (var parameter in this.Model)
             {
-                <div class="form-check" id="all-params-checkbox">
+                <div class="form-check text-left" id="all-params-checkbox">
 
                     <input name="Box" class=" form-check-input" type="checkbox" value="@parameter.Name" id="paramCheck">
                     <label class="form-check-label" for="paramCheck">@parameter.Name</label>
@@ -20,7 +20,7 @@
             }
 
 
-            <input class="btn btn-success mt-3 text-center" type="submit" value="Send" />
+            <input class="btn btn-success mt-3 text-center btn-style-one" type="submit" value="Send" />
         </form>
 
     </div>
