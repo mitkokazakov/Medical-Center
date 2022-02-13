@@ -12,10 +12,12 @@ namespace MedicalCenter.Controllers
     public class BloodTestsController : Controller
     {
         private readonly IBloodTestsService bloodTestsService;
+        private readonly IPatientService patientService;
 
-        public BloodTestsController(IBloodTestsService bloodTestsService)
+        public BloodTestsController(IBloodTestsService bloodTestsService, IPatientService patientService)
         {
             this.bloodTestsService = bloodTestsService;
+            this.patientService = patientService;
         }
 
         [Authorize(Roles = "Doctor")]
@@ -42,6 +44,8 @@ namespace MedicalCenter.Controllers
         {
             var allParameters = this.bloodTestsService.ListAllParameters();
 
+            var currentPatient = this.patientService.GetPatientById(id);
+
             if (Box.Count == 0)
             {
                 TempData["Error"] = "Please select at least one parameter!";
@@ -54,7 +58,8 @@ namespace MedicalCenter.Controllers
 
             await this.bloodTestsService.SendBloodTest(Box,doctorId,id);
 
-            return this.RedirectToAction("Manage","Doctors");
+            return this.Redirect($"/Doctors/PatientProfile?EGN={currentPatient.EGN}");
+
         }
 
         
