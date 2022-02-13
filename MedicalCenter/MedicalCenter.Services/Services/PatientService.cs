@@ -106,6 +106,15 @@ namespace MedicalCenter.Services.Services
             return patientMedicalRecord;
         }
 
+        public PatientProfileViewModel GetPatientById(string patientId)
+        {
+            var currentPatient = this.db.Patients.FirstOrDefault(p => p.Id == patientId);
+
+            var patient = this.mapper.Map<PatientProfileViewModel>(currentPatient);
+
+            return patient;
+        }
+
         //public PatientProfileViewModel FindPatientByName(string name)
         //{
         //    var patient = this.db.Patients.FirstOrDefault(p => p.User.FirstName + " " + p.User.LastName == name);

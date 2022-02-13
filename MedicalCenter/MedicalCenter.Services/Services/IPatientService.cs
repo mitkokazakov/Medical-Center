@@ -7,6 +7,7 @@ namespace MedicalCenter.Services.Services
 {
     public interface IPatientService
     {
+        PatientProfileViewModel GetPatientById(string patientId);
         bool IsPatientProfileCompleted(string userId);
 
         bool IsPatientWithCertainEGNExist(string EGN);
