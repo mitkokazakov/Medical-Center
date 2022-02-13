@@ -15,11 +15,13 @@ namespace MedicalCenter.Services.ViewModels.Admin
         public string Password { get; set; }
 
         [Required]
+        [Display(Name = "First Name")]
         [MinLength(DoctorFirstNameMinLen, ErrorMessage = "{0} must be at least {1} characters long.")]
         [MaxLength(DoctorFirstNameMaxLen)]
         public string FirstName { get; set; }
 
         [Required]
+        [Display(Name = "Last Name")]
         [MinLength(DoctorLastNameMinLen, ErrorMessage = "{0} must be at least {1} characters long.")]
         [MaxLength(DoctorLastNameMaxLen)]
         public string LastName { get; set; }

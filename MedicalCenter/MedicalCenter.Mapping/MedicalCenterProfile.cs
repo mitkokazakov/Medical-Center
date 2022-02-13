@@ -81,7 +81,7 @@ namespace MedicalCenter.Mapping
 
             this.CreateMap<BloodTest, AllBloodTestsViewModel>()
                 .ForMember(x => x.DoctorFullName, y => y.MapFrom(x => x.Doctor.User.FirstName + " " + x.Doctor.User.LastName))
-                .ForMember(x => x.CreatedOn, y => y.MapFrom(x => x.CreatedOn.ToString("D")));
+                .ForMember(x => x.CreatedOn, y => y.MapFrom(x => x.CreatedOn.ToString("dddd, dd MMMM yyyy HH:mm")));
 
             this.CreateMap<BloodTestsPatients, ResultsViewModel>()
                 .ForMember(x => x.Name, y => y.MapFrom(x => x.Paramater.Name))
