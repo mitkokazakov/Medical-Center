@@ -13,10 +13,12 @@ namespace MedicalCenter.Controllers
     public class ScheduleController : Controller
     {
         private readonly IScheduleService scheduleService;
+        private readonly IDoctorService doctorService;
 
-        public ScheduleController(IScheduleService scheduleService)
+        public ScheduleController(IScheduleService scheduleService, IDoctorService doctorService)
         {
             this.scheduleService = scheduleService;
+            this.doctorService = doctorService;
         }
 
         [Authorize(Roles = "Doctor")]
@@ -48,6 +50,10 @@ namespace MedicalCenter.Controllers
         public IActionResult FreeHours(string id)
         {
             var allFreeHours = this.scheduleService.ListAllFreeHours(id);
+
+            var currentDoc = this.doctorService.GetDoctorById(id);
+
+            this.ViewBag.DoctorFullName = currentDoc.FullName;
 
             return this.View(allFreeHours);
         }
