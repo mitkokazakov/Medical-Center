@@ -25,7 +25,7 @@ namespace MedicalCenter.Services.Services
 
         public async Task AddFreeHour(string doctorId, InputScheduleFormModel model)
         {
-            var dayFormat = DateTime.ParseExact(model.Date.ToString("MM/dd/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            var dayFormat = DateTime.ParseExact(model.Date.ToString("MM.dd.yyyy"), "MM.dd.yyyy", CultureInfo.InvariantCulture);
 
             var hourFormat = DateTime.ParseExact(model.Date.ToString("HH:mm"), "HH:mm", CultureInfo.InvariantCulture);
 
