@@ -106,7 +106,6 @@ namespace MedicalCenter.Tests.Controllers
                 }))
                 .ShouldHave()
                 .ActionAttributes(attributes => attributes
-                    .RestrictingForHttpMethod(HttpMethod.Post)
                     .RestrictingForAuthorizedRequests())
                 .ValidModelState()
                 .AndAlso()
