@@ -167,7 +167,39 @@ namespace MedicalCenter.Tests.Services
 
         }
 
-        public ICollection<Patient> FakePatients()
+        [Fact]
+        public async Task CheckWhenAddMethodIsCalled()
+        {
+            //Arrange
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var patientService = new PatientService(db, mapper);
+
+            //Act
+
+            await patientService.AddPatient(FakeAddPatientModel(),"ooXvCb");
+
+            var exist = patientService.IsPatientWithCertainEGNExist("8901238741");
+
+            var patientCountInDatabase = db.Patients.Count();
+
+            var targetPatient = patientService.FindPatientByEGN("8901238741");
+
+            // Assert
+
+            Assert.Equal(3,patientCountInDatabase);
+            Assert.Equal("Iceland",targetPatient.Country);
+            Assert.Equal("Selfoss",targetPatient.Town);
+            Assert.True(exist);
+        }
+
+        private ICollection<Patient> FakePatients()
         {
             return new List<Patient>
             {
@@ -196,13 +228,25 @@ namespace MedicalCenter.Tests.Services
             };
         }
 
-        public ChangePatientProfileViewModel FakeChangePatient()
+        private ChangePatientProfileViewModel FakeChangePatient()
         {
             return new ChangePatientProfileViewModel
             {
                 Address = "Thorhavn 14",
                 Town = "Oslo",
                 Country = "Norway"
+            };
+        }
+
+        private AddPatientFormModel FakeAddPatientModel()
+        {
+            return new AddPatientFormModel
+            {
+                Country = "Iceland",
+                Town = "Selfoss",
+                Address = "Reignir 6",
+                EGN = "8901238741",
+                DateOfBirth = new DateTime(1989,1,23)
             };
         }
     }
