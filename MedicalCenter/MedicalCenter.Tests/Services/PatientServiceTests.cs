@@ -118,6 +118,55 @@ namespace MedicalCenter.Tests.Services
             Assert.Equal("Oslo", changedPatient.Town);
         }
 
+        [Fact]
+
+        public void MethodShouldReturnTrueIfPatientExistWhenCertainEGNIsPassed()
+        {
+            //Arrange
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var patientService = new PatientService(db,mapper);
+
+            // Act
+
+            var exists = patientService.IsPatientWithCertainEGNExist("9211067524");
+
+            //Assert
+
+            Assert.True(exists);
+
+        }
+
+        [Fact]
+        public void MethodShouldReturnFalseIfThereIsNotPatientWithPassedEGN()
+        {
+            //Arrange
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var patientService = new PatientService(db, mapper);
+
+            // Act
+
+            var exists = patientService.IsPatientWithCertainEGNExist("9211064444");
+
+            //Assert
+
+            Assert.False(exists);
+
+        }
+
         public ICollection<Patient> FakePatients()
         {
             return new List<Patient>
