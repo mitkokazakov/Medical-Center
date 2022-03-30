@@ -1,6 +1,9 @@
 ﻿using MedicalCenter.Controllers;
 using MedicalCenter.Data.Data.Models;
+using MedicalCenter.Services.Services;
 using MedicalCenter.Services.ViewModels.Patients;
+using MedicalCenter.Tests.Mocks;
+using Microsoft.AspNetCore.Mvc;
 using MyTested.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,70 @@ namespace MedicalCenter.Tests.Controllers
 {
     public class PatientsControllerTest
     {
+        [Fact]
+        public void AddActionShouldReturnCorrectView()
+        {
+            // Assert
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var userManager = MockUserManager.Instance;
+
+            var patientsService = new PatientService(db, mapper);
+
+            var patientController = new PatientsController(patientsService, userManager);
+
+            // Act
+
+            var result = patientController.Add(FakeAddPatientModelExistingEGN());
+
+            //Assert
+
+            Assert.NotNull(result);
+
+            var model = Assert.IsType<Task<IActionResult>>(result);
+
+            
+        }
+
+        [Fact]
+        public void AddActionShouldReturnCurrentViewModelIfModelIsNotValid()
+        {
+            // Assert
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var userManager = MockUserManager.Instance;
+
+            var patientsService = new PatientService(db, mapper);
+
+            var patientController = new PatientsController(patientsService, userManager);
+
+            // Act
+
+            var result = patientController.Add(FakeAddPatientModelWrongEGN());
+
+            //Assert
+
+            Assert.NotNull(result);
+
+            var model = Assert.IsType<Task<IActionResult>>(result);
+
+
+        }
+
+
+
         [Fact]
         public void GetAddPatientShouldReturnViewOnlyForPatients()
             => MyController<PatientsController>
@@ -89,6 +156,59 @@ namespace MedicalCenter.Tests.Controllers
                 .ShouldReturn()
                 .Redirect(redirect => redirect
                     .To<PatientsController>(c => c.ViewProfile()));
+
+        private ICollection<Patient> FakePatients()
+        {
+            return new List<Patient>
+            {
+                new Patient
+                {
+                    Id = "ffghjkk",
+                    Address = "Samara 3",
+                    UserId = "dfCvHg12",
+                    Country = "Bulgaria",
+                    Town = "Stara Zagora",
+                    EGN = "9211067524",
+                    DateOfBirth = new DateTime(1992,11,6),
+                    IsDeleted = false
+                },
+                new Patient
+                {
+                    Id = "ffghjkk22",
+                    Address = "Samara 2",
+                    UserId = "dfCvHg13",
+                    Country = "Bulgaria",
+                    Town = "Stara Zagora",
+                    EGN = "9210067525",
+                    DateOfBirth = new DateTime(1992,10,6),
+                    IsDeleted = false
+                }
+            };
+        }
+
+        private AddPatientFormModel FakeAddPatientModelExistingEGN()
+        {
+            return new AddPatientFormModel
+            {
+                Country = "Russia",
+                Town = "Moscow",
+                Address = "Pripiyat 13",
+                EGN = "9211067524",
+                DateOfBirth = new DateTime(1992, 11, 6)
+            };
+        }
+
+        private AddPatientFormModel FakeAddPatientModelWrongEGN()
+        {
+            return new AddPatientFormModel
+            {
+                Country = "Russia",
+                Town = "Moscow",
+                Address = "Pripiyat 13",
+                EGN = "921106752",
+                DateOfBirth = new DateTime(1992, 11, 6)
+            };
+        }
 
     }
 }
