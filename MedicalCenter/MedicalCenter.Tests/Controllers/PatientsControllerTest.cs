@@ -73,9 +73,38 @@ namespace MedicalCenter.Tests.Controllers
 
             Assert.NotNull(result);
 
-            var model = Assert.IsType<Task<IActionResult>>(result);
+            var viewResult = Assert.IsType<Task<IActionResult>>(result);
 
+        }
 
+        [Fact]
+
+        public void ActionViewProfileShouldReturnCorrectView() 
+        {
+            // Assert
+
+            var db = MockDatabase.Instance;
+
+            db.Patients.AddRange(FakePatients());
+            db.SaveChanges();
+
+            var mapper = MockMapper.Instance;
+
+            var userManager = MockUserManager.Instance;
+
+            var patientsService = new PatientService(db, mapper);
+
+            var patientController = new PatientsController(patientsService, userManager);
+
+            //Act
+
+            var result = patientController.ViewProfile();
+
+            //Assert
+
+            Assert.NotNull(result);
+
+            Assert.IsType<ViewResult>(result);
         }
 
 
