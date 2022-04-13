@@ -8,14 +8,14 @@
 
     @if (!this.Model.Any())
     {
-        <h4 class="display-4 text-danger offset-md-2">There is no shedules</h4>
+        <h4 class="display-4 text-danger offset-md-2 offset-2">There is no shedules</h4>
     }
 
     <div class="row" id="inner-manage-div">
 
         @foreach (var day in this.Model)
         {
-            <div class="col-md-3" >
+            <div class="col-md-3 col-6" >
 
                 <div class="d-flex flex-column align-items-center" >
 
