@@ -79,6 +79,34 @@ namespace MedicalCenter.Tests.Services
             Assert.True(existingSchedule);
         }
 
+        [Fact]
+        public async Task MethodSaveHourShouldChangeIsFreeProp()
+        {
+            //Arrange
+
+            this.mockDatabase.AddRange(GetFakeHours());
+            this.mockDatabase.SaveChanges();
+
+            var scheduleService = new ScheduleService(this.mapper, this.mockDatabase);
+
+            SaveHourFormModel model = new SaveHourFormModel
+            {
+                Reason = "Broken leg"
+            };
+
+            //Act
+
+            await scheduleService.SaveHour(4, model,"mmXXcc");
+
+            //Assert
+
+            var savedHour = this.mockDatabase.Hours.FirstOrDefault(h => h.Id == 4);
+
+            Assert.Equal(savedHour.UserId,"mmXXcc");
+            Assert.False(savedHour.IsFree);
+            Assert.NotNull(savedHour);
+        }
+
         private ICollection<Schedule> GetFakeSchedules()
         {
             return new List<Schedule>()
@@ -115,6 +143,16 @@ namespace MedicalCenter.Tests.Services
                     UserId = "xBmKlO76F"
                 },
             };
+        }
+
+        private ICollection<Hour> GetFakeHours() 
+        {
+            return new List<Hour>()
+            {
+                new Hour {Id=4, FreeHour = new DateTime(2026,5,7),ScheduleId=6 },
+                new Hour {Id=1, FreeHour = new DateTime(2026,5,8),ScheduleId=3 }
+            };
+
         }
     }
 }
