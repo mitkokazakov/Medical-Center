@@ -29,4 +29,10 @@
     <ProjectReference Include="..\MedicalCenter\MedicalCenter.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Services\test.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
