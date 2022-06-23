@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MedicalCenter.Data;
+using MedicalCenter.Data.Data.Models;
 using MedicalCenter.Services.Services;
 using MedicalCenter.Services.ViewModels.Doctors;
 using MedicalCenter.Tests.Mocks;
@@ -57,6 +58,53 @@ namespace MedicalCenter.Tests.Services
             Assert.Equal(1,imagesCount);
         }
 
+        [Fact]
+        public void IsDoctorProfileCompletedMethodShouldReturnTrueIfDoctorExistWithCertainUserId() 
+        {
+            //Arrange
+            this.mockDatabase.Doctors.Add(FakeDoctor());
+            this.mockDatabase.SaveChanges();
+
+            var mockedIWebHost = new Mock<IWebHostEnvironment>(MockBehavior.Strict);
+
+            mockedIWebHost.Setup(w => w.WebRootPath).Returns(@"D:\Programming\C#\ASP.NET Core\Medical-Center\MedicalCenter\MedicalCenter\wwwroot");
+
+            var doctorsService = new DoctorService(this.mockDatabase, this.mapper, mockedIWebHost.Object);
+
+            //Act
+            var exist = doctorsService.IsDoctorProfileCompleted("xxCC");
+
+            //Assert
+
+            Assert.True(exist);
+
+        }
+
+        [Fact]
+        public async Task ChangeDoctorInfoShouldWorksCorrect() 
+        {
+            //Arrange
+            this.mockDatabase.Doctors.Add(FakeDoctor());
+            this.mockDatabase.SaveChanges();
+
+            var mockedIWebHost = new Mock<IWebHostEnvironment>(MockBehavior.Strict);
+
+            mockedIWebHost.Setup(w => w.WebRootPath).Returns(@"D:\Programming\C#\ASP.NET Core\Medical-Center\MedicalCenter\MedicalCenter\wwwroot");
+
+            var doctorsService = new DoctorService(this.mockDatabase, this.mapper, mockedIWebHost.Object);
+
+            //Act
+            await doctorsService.ChangeDoctorInfo("xxCC",FakeChangeDoctorFormModel());
+
+            //Assert
+
+            var doc = doctorsService.GetDoctor("xxCC");
+
+            var bio = doc.Biography;
+
+            Assert.Equal("Some changed bio!",bio);
+        }
+
         private AddDoctorFormModel FakeDoctorFormModel() 
         {
             var file = new Mock<IFormFile>();
@@ -74,20 +122,51 @@ namespace MedicalCenter.Tests.Services
 
             var inputFile = file.Object;
 
-
-            //IFormFile file = null;
-
-            //using (var stream = File.OpenRead(@"C:\Users\dimit\OneDrive\Работен плот\Docs\test.jpg"))
-            //{
-
-            //    file = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
-            //}
-
             return new AddDoctorFormModel()
             {
                 Specialty = "Oftalmology",
                 Biography = "Hi this is my first day in this hospital",
                 Image = inputFile
+            };
+        }
+
+        private ChangeDoctorInfoFormModel FakeChangeDoctorFormModel()
+        {
+            var file = new Mock<IFormFile>();
+            var sourceImg = File.OpenRead(@"C:\Users\dimit\OneDrive\Работен плот\Docs\test.jpg");
+            var ms = new MemoryStream();
+            var writer = new StreamWriter(ms);
+            writer.Write(sourceImg);
+            writer.Flush();
+            ms.Position = 0;
+            var fileName = "test.jpg";
+            file.Setup(f => f.FileName).Returns(fileName).Verifiable();
+            file.Setup(_ => _.CopyToAsync(It.IsAny<Stream>(), It.IsAny<CancellationToken>()))
+                .Returns((Stream stream, CancellationToken token) => ms.CopyToAsync(stream))
+                .Verifiable();
+
+            var inputFile = file.Object;
+
+
+
+            return new ChangeDoctorInfoFormModel()
+            {
+             
+                Biography = "Some changed bio!",
+                Image = inputFile
+            };
+        }
+
+        private Doctor FakeDoctor() 
+        {
+            return new Doctor()
+            {
+                Id = 1,
+                Specialty = "Surgeon",
+                Biography = "Some random",
+                UserId = "xxCC",
+                IsDeleted = false,
+                ImageId = "zzAA"
             };
         }
     }
